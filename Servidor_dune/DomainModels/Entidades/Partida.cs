@@ -1,21 +1,17 @@
-﻿namespace Entities;
+﻿using System;
+using System.Collections.Generic;
+using 
 
-public class Enclave
+public class Partida
 {
-    public int Id { get; set; }
-    public string Nombre { get; set; } = string.Empty;
+    public Guid Id { get; set; } //esto es mejor que un int para los id
+    public string AliasJugador { get; set; }
+    public string EscenarioSeleccionado { get; set; }
+    public decimal Fondos { get; set; }
+    public DateTime FechaCreacion { get; set; }
+    public int RondaActual { get; set; }
+    public EstadoPartida EstadoPartida { get; set; }
 
-    public TipoEnclave TipoEnclave { get; set; }
-
-    public double HectareasTotales { get; set; }
-
-    public int SuministrosDisponibles { get; set; }
-
-    public int VisitantesMensualesBase { get; set; }
-
-    public int VisitantesActuales { get; set; }
-
-    public decimal NivelAdquisitivo { get; set; }
-
-    public List<Instalacion> Instalaciones { get; set; } = new();
+    public List<Enclave> Enclaves { get; set; } = new();
+    public List<RegistroEvento> RegistroEventos { get; set; } = new();
 }
