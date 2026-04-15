@@ -1,4 +1,4 @@
-﻿namespace TuProyecto.Enums
+﻿namespace DomainModels.Enums
 {
     public enum EstadoPartida
     {
