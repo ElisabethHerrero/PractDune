@@ -1,0 +1,6 @@
+@Servidor_dune_HostAddress = http://localhost:5079
+
+GET {{Servidor_dune_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
