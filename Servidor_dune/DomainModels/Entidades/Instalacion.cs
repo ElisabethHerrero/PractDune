@@ -1,23 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using DomainModels.Enum
 
 public class Instalacion
 {
-    public Guid Id { get; set; }
-    public string Codigo { get; set; }
-    public string Nombre { get; set; }
+    public TipoInstalacion tipoInstalacion { get; private set; }
+    public string Codigo { get; private set; }
+    public int Coste { get; private set; }
+    public Medio Medio { get; private set; }
+    public TipoAlimentacion Alimentacion { get; private set; }
+    public int Capacidad { get; private set; }
+    public int Hectareas { get; private set; }
+    public int Suministros { get; private set; }
+    public TipoRecinto TipoRecinto { get; private set; }
 
-    public TipoInstalacion TipoInstalacion { get; set; }
-    public decimal CosteConstruccion { get; set; }
+    public List<Criatura> Criaturas { get; private set; } = new();
 
-    public Medio MedioCompatible { get; set; }
-    public TipoAlimentacion AlimentacionCompatible { get; set; }
+    public bool TieneCapacidad() => Criaturas.Count < Capacidad;
 
-    public int SuministrosActuales { get; set; }
-    public int CapacidadMaxima { get; set; }
-    public double Hectareas { get; set; }
+    public void AñadirCriatura(Criatura c)
+    {
+        if (!TieneCapacidad())
+            throw new Exception("Instalación llena");
 
-    public TipoRecinto TipoRecinto { get; set; }
+        if (c.Medio != Medio || c.Alimentacion != Alimentacion)
+            throw new Exception("Criatura incompatible");
 
-    public List<Criatura> Criaturas { get; set; } = new();
+        Criaturas.Add(c);
+    }
+
+    public void AlimentarCriaturas(bool esAclimatacion)
+    {
+        foreach (var c in Criaturas)
+        {
+            int necesaria = c.CalcularIngesta(esAclimatacion);
+
+            if (Suministros >= necesaria)
+            {
+                Suministros -= necesaria;
+                c.Alimentar(necesaria, esAclimatacion);
+            }
+            else
+            {
+                c.Alimentar(Suministros, esAclimatacion);
+                Suministros = 0;
+            }
+        }
+    }
 }
