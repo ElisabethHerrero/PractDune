@@ -2,8 +2,8 @@
 {
     public enum Medio
     {
-        Terrestre,
-        Acuatico,
+        Desierto,
+        Subterraneo,
         Aereo
     }
 }
