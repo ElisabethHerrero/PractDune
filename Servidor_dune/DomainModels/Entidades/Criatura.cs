@@ -2,7 +2,8 @@
 
 public class Criatura
 {
-    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid Id { get; private set; }
+
     public Especie Especie { get; private set; }
     public Medio Medio { get; private set; }
     public TipoAlimentacion Alimentacion { get; private set; }
@@ -16,45 +17,20 @@ public class Criatura
 
     public Criatura(Especie especie)
     {
+        Id = Guid.NewGuid();
         Especie = especie;
 
-        switch (especie)
-        {
-            case Especie.Gusano:
-                Medio = Medio.Subterraneo;
-                Alimentacion = TipoAlimentacion.Depredador;
-                EdadAdulta = 24;
-                ApetitoBase = 5;
-                break;
+        // Aquí se obtienen los datos sin necesidad de un switch interno
+        var datos = EspecieConfig.Obtener(especie);
 
-            case Especie.TigreLaza:
-                Medio = Medio.Desierto;
-                Alimentacion = TipoAlimentacion.Depredador;
-                EdadAdulta = 38;
-                ApetitoBase = 8;
-                break;
+        Medio = datos.Medio;
+        Alimentacion = datos.Alimentacion;
+        EdadAdulta = datos.EdadAdulta;
+        ApetitoBase = datos.ApetitoBase;
 
-            case Especie.MuadDib:
-                Medio = Medio.Desierto;
-                Alimentacion = TipoAlimentacion.Recolector;
-                EdadAdulta = 12;
-                ApetitoBase = 2;
-                break;
-
-            case Especie.Halcon:
-                Medio = Medio.Aereo;
-                Alimentacion = TipoAlimentacion.Depredador;
-                EdadAdulta = 16;
-                ApetitoBase = 2;
-                break;
-
-            case Especie.Trucha:
-                Medio = Medio.Subterraneo;
-                Alimentacion = TipoAlimentacion.Recolector;
-                EdadAdulta = 42;
-                ApetitoBase = 10;
-                break;
-        }
+        Edad = 0;
+        Salud = 100;
+        VecesFavorita = 0;
     }
 
     public int CalcularIngesta(bool esAclimatacion)
