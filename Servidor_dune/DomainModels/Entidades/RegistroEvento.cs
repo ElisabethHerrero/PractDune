@@ -1,13 +1,17 @@
 ﻿using System;
 
-public class RegistroEvento
+namespace DomainModels.Entidades
 {
-    public Guid Id { get; set; }
-    public DateTime FechaHora { get; set; }
+    public class RegistroEvento
+    {
+        public Guid Id { get; set; }
+        public DateTime FechaHora { get; set; }
 
-    public TipoEvento TipoEvento { get; set; }
-    public string Descripcion { get; set; }
-    public Severidad Severidad { get; set; }
+        public TipoEvento TipoEvento { get; set; }
+        public string Descripcion { get; set; }
+        public Severidad Severidad { get; set; }
 
-    public Guid PartidaId { get; set; }
+        public Guid PartidaId { get; set; }
+    }
+
 }
