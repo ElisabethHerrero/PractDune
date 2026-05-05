@@ -2,18 +2,20 @@
 using DomainModels.Enums;
 using ServidorDune.Services.Interfaces;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ServidorDune.Services
 {
     public class RegistroEventosService : IRegistroEventosService
     {
         public void RegistrarEvento(
-        Partida partida,
-        TipoEvento tipoEvento,
-        string descripcion,
-        SeveridadEvento severidad)
+            Partida partida,
+            TipoEvento tipoEvento,
+            string descripcion,
+            SeveridadEvento severidad)
         {
+            if (partida == null)
+                throw new ArgumentNullException(nameof(partida));
+
             RegistroEvento evento = new RegistroEvento
             {
                 Id = Guid.NewGuid(),
@@ -24,10 +26,7 @@ namespace ServidorDune.Services
                 PartidaId = partida.Id
             };
 
-            text
-        
-        partida.HistorialEvento.Add(evento);
+            partida.HistorialEvento.Add(evento);
         }
     }
 }
-

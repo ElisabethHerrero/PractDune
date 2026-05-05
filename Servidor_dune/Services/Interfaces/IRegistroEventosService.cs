@@ -1,8 +1,14 @@
-﻿using System;
+﻿using DomainModels.Entidades;
+using DomainModels.Enums;
 
-public class Class1
+namespace ServidorDune.Services.Interfaces
 {
-	public Class1()
-	{
-	}
+    public interface IRegistroEventosService
+    {
+        void RegistrarEvento(
+            Partida partida,
+            TipoEvento tipoEvento,
+            string descripcion,
+            SeveridadEvento severidad);
+    }
 }
