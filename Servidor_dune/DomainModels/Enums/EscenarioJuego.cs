@@ -1,6 +1,6 @@
 ﻿namespace DomainModels.Enums
 {
-    public class EscenarioJuego
+    public enum EscenarioJuego
     {
         Arrakeen,
         GiediPrime,

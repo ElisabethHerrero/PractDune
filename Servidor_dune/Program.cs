@@ -1,13 +1,27 @@
+using ServidorDune.Services;
+using ServidorDune.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// REGISTRO DE SERVICIOS
+
+builder.Services.AddSingleton<IPersistenciaService, PersistenciaService>();
+
+builder.Services.AddSingleton<IRegistroEventosService, RegistroEventosService>();
+
+builder.Services.AddSingleton<ISimulacionService, SimulacionService>();
+
+builder.Services.AddSingleton<IPartidaService, PartidaService>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

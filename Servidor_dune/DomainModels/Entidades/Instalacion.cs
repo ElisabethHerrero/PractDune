@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DomainModels.Enum;
+using DomainModels.Enums;
 
 namespace DomainModels.Entidades
 {

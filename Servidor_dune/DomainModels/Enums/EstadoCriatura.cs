@@ -4,7 +4,7 @@
     {
         Activa,
         LetargoIrreversible,
-        Trasladada
+        Trasladada,
         Descartada
     }
 }
