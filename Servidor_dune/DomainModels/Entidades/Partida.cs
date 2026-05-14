@@ -7,18 +7,25 @@ namespace DomainModels.Entidades
     public class Partida
     {
         public Guid Id { get; set; } //esto es mejor que un int para los id
-        public string AliasJugador { get; set; }
+        public string NombreJugador { get; set; }
         public EscenarioJuego Escenario { get; set; }
         public decimal Solaris { get; set; }
 
-        //public DateTime FechaCreacion { get; set; } //esto no es necesario
+        
 
         public int RondaActual { get; set; }
         public EstadoPartida EstadoPartida { get; set; }
+        public int MesActual { get; set; }
 
         public List<Enclave> Enclaves { get; set; } = new();
         public List<RegistroEvento> HistorialEvento { get; set; } = new();
 
+        public Partida()
+        {
+            Id = Guid.NewGuid();
+            RondaActual = 0;
+            EstadoPartida = EstadoPartida.EnCurso;
+        }
 
         public static Partida InicializarNueva(string nombreJugador, EscenarioJuego tipoEscenario)
         {
@@ -51,19 +58,20 @@ namespace DomainModels.Entidades
                 null
             ));
 
-            partida.RegistrarEvento($"Partida creada en {tipoEscenario}.");
+            partida.RegistrarEvento("Partida creada en " + tipoEscenario.ToString() + ".", TipoEvento.CreacionPartida, Severidad.Info);
+            
             return partida;
         }
 
 
-        public void RegistrarEvento(string descripcion)
+        public void RegistrarEvento(string descripcion, TipoEvento tipo, Severidad severidad)
         {
             HistorialEventos.Add(new RegistroEvento
             {
                 Id = Guid.NewGuid(),
                 FechaHora = DateTime.Now,
                 TipoEvento = tipo,
-                Descripcion = desc,
+                Descripcion = descripcion,
                 Severidad = severidad,
                 PartidaId = this.Id // o de donde venga
             });
