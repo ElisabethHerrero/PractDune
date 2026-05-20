@@ -29,12 +29,12 @@ public class PartidaManager : MonoBehaviour
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Partida creada: " + request.downloadHandler.text);
+                //Debug.Log("Partida creada: " + request.downloadHandler.text);
                 // Aquí puedes procesar la respuesta y cambiar de escena
             }
             else
             {
-                Debug.LogError("Error al crear partida: " + request.error);
+                //Debug.LogError("Error al crear partida: " + request.error);
             }
         }
     }
