@@ -3,6 +3,12 @@ using ServidorDune.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<IPersistenciaService, PersistenciaService>(); // Implementación que usa GestorPersistencia
+builder.Services.AddSingleton<ISimulacionService, SimulacionService>();
+builder.Services.AddSingleton<IRegistroEventosService, RegistroEventosService>();
+builder.Services.AddSingleton<IPartidaService, PartidaService>();
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
