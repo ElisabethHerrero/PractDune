@@ -6,7 +6,7 @@ using UnityEngine;
 public class PersistenciaPartida : MonoBehaviour
 {
     // URL de la API (cambiar según tu servidor)
-    private string apiUrl = "http://localhost:5000/api/partida";
+    private string apiUrl = "http://localhost:5079";
 
     /// <summary>
     /// Crea una nueva partida llamando a la API
