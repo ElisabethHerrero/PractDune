@@ -1,7 +1,8 @@
-﻿namespace DTOs.Responses
+﻿namespace Dune.API.DTOs.Responses
 {
-    public class EjecutarRonda
+    public class OperacionResultado
     {
-        public string IdPartida { get; set; }
+        public bool Success { get; set; }
+        public string Message { get; set; }
     }
 }
