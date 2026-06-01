@@ -1,4 +1,5 @@
 ﻿using System;
+using DomainModels.Enums;
 
 namespace DomainModels.Entidades
 {
@@ -17,7 +18,7 @@ namespace DomainModels.Entidades
 
         private int ApetitoBase;
 
-        public Criatura(Especie especie)
+        public Criatura(EspecieCriatura especie)
         {
             Id = Guid.NewGuid();
             Especie = especie;

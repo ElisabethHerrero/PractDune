@@ -8,6 +8,8 @@
         public int EdadActual { get; set; }
         public int Salud { get; set; }
 
+        public int EdadAdulta { get; set; }
+
         public MedioCriatura Medio { get; set; }
         public TipoAlimentacion TipoAlimentacion { get; set; }
 

@@ -1,7 +1,17 @@
 ﻿using System;
 namespace DomainModels.Catalogs.Especie
 {
-    public class DatosEspecie
+
+    public enum Especie
+    {
+        GusanoArenaJuvenil,
+        TigreLaza,
+        MuadDib,
+        HalconDesierto,
+        TruchaArena
+    }
+
+    public class Especie
     {
         public Medio Medio { get; init; }
         public TipoAlimentacion Alimentacion { get; init; }

@@ -14,5 +14,7 @@
 
         public MedioCriatura MedioCompatible { get; set; }
         public TipoAlimentacion AlimentacionCompatible { get; set; }
+
+        public List<CriaturaDto> Criaturas { get; set; } = new();
     }
 }

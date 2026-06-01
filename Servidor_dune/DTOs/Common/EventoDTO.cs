@@ -2,7 +2,8 @@
 {
     public class EnclaveDto
     {
-        public DateTime FechaHora { get; set; }
+        public int Id { get; set; }
+        public string FechaHora { get; set; }
         public TipoEvento TipoEvento { get; set; }
         public string Descripcion { get; set; }
         public SeveridadEvento Severidad { get; set; }
