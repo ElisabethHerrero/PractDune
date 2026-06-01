@@ -97,3 +97,12 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+
+Unity_Dune/[Ll]ibrary/
+Unity_Dune/[Tt]emp/
+Unity_Dune/[Oo]bj/
+Unity_Dune/[Bb]uild/
+Unity_Dune/[Bb]uilds/
+Unity_Dune/[Ll]ogs/
+Unity_Dune/[Uu]ser[Ss]ettings/
