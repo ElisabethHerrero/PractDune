@@ -23,12 +23,14 @@ public class BuildingPlacer : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            // Evita construir al hacer click encima de un botón UI
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
                 return;
 
             TryPlaceBuilding();
         }
 
+        // Click derecho para cancelar la construcción
         if (Input.GetMouseButtonDown(1))
         {
             CancelSelection();
@@ -50,6 +52,7 @@ public class BuildingPlacer : MonoBehaviour
             Debug.LogError("El prefab no tiene BuildingVisualData.");
             Destroy(previewBuilding);
             previewBuilding = null;
+            selectedBuildingPrefab = null;
             return;
         }
 
@@ -64,6 +67,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             spriteRenderer.sortingLayerName = "Default";
             spriteRenderer.sortingOrder = 10;
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.6f);
         }
 
         UpdatePreviewPosition();
@@ -123,6 +127,11 @@ public class BuildingPlacer : MonoBehaviour
         MarkCellsAsOccupied(originCell, size);
 
         Debug.Log("Instalación construida: " + previewData.codigoInstalacion);
+
+        // Importante:
+        // después de construir una instalación, se cancela la selección.
+        // Así tienes que volver a pulsar el botón para construir otra.
+        CancelSelection();
     }
 
     bool CanBuild(Vector3Int originCell, Vector2Int size)
@@ -177,9 +186,15 @@ public class BuildingPlacer : MonoBehaviour
             return;
 
         if (canBuild)
+        {
+            // Blanco semitransparente: se puede construir
             spriteRenderer.color = new Color(1f, 1f, 1f, 0.6f);
+        }
         else
+        {
+            // Rojo semitransparente: no se puede construir
             spriteRenderer.color = new Color(1f, 0.25f, 0.25f, 0.6f);
+        }
     }
 
     void CancelSelection()
@@ -188,6 +203,9 @@ public class BuildingPlacer : MonoBehaviour
         previewData = null;
 
         if (previewBuilding != null)
+        {
             Destroy(previewBuilding);
+            previewBuilding = null;
+        }
     }
 }
