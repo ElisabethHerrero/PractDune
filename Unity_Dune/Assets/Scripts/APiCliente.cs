@@ -83,20 +83,27 @@ public class APICliente : MonoBehaviour
         }
     }
 
-    public IEnumerator ObtenerDetallePartida(string partidaId, Action<PartidaDetalleDTO> onSuccess, Action<string> onError)
+    public IEnumerator ObtenerDetallePartida(Guid partidaId, Action<PartidaDetalleDTO> onSuccess, Action<string> onError)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(BASE_URL + $"/{partidaId}"))
+        // IMPORTANTE: Asegúrate de añadir "/Cargar/" en la URL
+        // Si tu BASE_URL es ".../api/Partida", la ruta final debe ser ".../api/Partida/Cargar/ID"
+        string urlCompleta = BASE_URL + "/Cargar/" + partidaId;
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(urlCompleta))
         {
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError($"Error al obtener detalle de partida: {webRequest.error} - {webRequest.downloadHandler.text}");
+                // Muy bien hecho lo de incluir el downloadHandler.text para ver el error del servidor
+                Debug.LogError($"Error al obtener detalle: {webRequest.error} - {webRequest.downloadHandler.text}");
                 onError?.Invoke(webRequest.downloadHandler.text);
             }
             else
             {
-                Debug.Log($"Detalle de partida: {webRequest.downloadHandler.text}");
+                Debug.Log($"JSON recibido: {webRequest.downloadHandler.text}");
+
+                // USAR Newtonsoft.Json es lo correcto para tus listas de Enclaves
                 PartidaDetalleDTO response = JsonConvert.DeserializeObject<PartidaDetalleDTO>(webRequest.downloadHandler.text);
                 onSuccess?.Invoke(response);
             }

@@ -28,7 +28,7 @@ public class PartidaResumenDTO : OperacionResultado
     public Guid Id;
     public string NombreJugador;
     public string Escenario; // String para el enum
-    public float Solaris; // decimal del backend se recibe como float o double
+    public double Solaris; // decimal del backend se recibe como float o double
     public int RondaActual;
     public string EstadoPartida; // String para el enum
 }
