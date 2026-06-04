@@ -208,4 +208,9 @@ public class BuildingPlacer : MonoBehaviour
             previewBuilding = null;
         }
     }
+
+    public bool IsCellOccupied(Vector3Int cell)
+    {
+        return occupiedCells.Contains(cell);
+    }
 }
