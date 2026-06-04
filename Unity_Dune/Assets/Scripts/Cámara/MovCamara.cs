@@ -8,6 +8,10 @@ public class MovCamara : MonoBehaviour
     [SerializeField] private float minZoom = 1f;
     [SerializeField] private float maxZoom = 40f;
 
+    [Header("Inicio")]
+    [SerializeField] private Vector2 posicionInicial = Vector2.zero;
+    [SerializeField] private bool empezarConZoomMaximo = true;
+
     [Header("Mapa")]
     [SerializeField] private SpriteRenderer mapRenderer;
 
@@ -30,6 +34,19 @@ public class MovCamara : MonoBehaviour
         }
 
         CalculateMapLimits();
+
+        // Centro real de la imagen del mapa
+        Vector3 centroMapa = mapRenderer.bounds.center;
+
+        transform.position = new Vector3(
+            centroMapa.x,
+            centroMapa.y,
+            transform.position.z
+        );
+
+        // Zoom inicial máximo, es decir, lo más alejado
+        cam.orthographicSize = maxZoom;
+
         ClampCamera();
     }
 
@@ -52,11 +69,9 @@ public class MovCamara : MonoBehaviour
 
     private void HandleDrag()
     {
-        // Evita mover la cámara si estás usando botones de UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
-        // Botón central del ratón
         if (Input.GetMouseButtonDown(2))
         {
             dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);

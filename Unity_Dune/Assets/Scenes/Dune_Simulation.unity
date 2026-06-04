@@ -9507,8 +9507,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 7
-  minZoom: 25
+  minZoom: 17
   maxZoom: 180
+  posicionInicial: {x: 0, y: 0}
+  empezarConZoomMaximo: 1
   mapRenderer: {fileID: 702411656}
 --- !u!1 &1817995741
 GameObject:
