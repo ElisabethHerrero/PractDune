@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Servidor_dune")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6231ef96ecdccbfcfb9e3c6bdd8578d8c9f67127")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f7a3109caa9e58580e4120bdf66b1bacbac8abd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Servidor_dune")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Servidor_dune")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

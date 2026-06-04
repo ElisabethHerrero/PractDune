@@ -1,11 +1,13 @@
-﻿namespace DTOs.Common
+﻿using DomainModels.Enums;
+
+namespace DTOs.Common
 {
-    public class EnclaveDto
+    public class EventoDto
     {
         public int Id { get; set; }
-        public string FechaHora { get; set; }
+        public DateTime FechaHora { get; set; }
         public TipoEvento TipoEvento { get; set; }
         public string Descripcion { get; set; }
-        public SeveridadEvento Severidad { get; set; }
+        public Severidad Severidad { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using DomainModels.Catalogs.Especie;
 using DomainModels.Enums;
 
 namespace DomainModels.Entidades
@@ -7,7 +8,7 @@ namespace DomainModels.Entidades
     {
         public Guid Id { get; private set; }
 
-        public Especie Especie { get; private set; }
+        public TipoEspecie Especie { get; private set; }
         public Medio Medio { get; private set; }
         public TipoAlimentacion Alimentacion { get; private set; }
 
@@ -18,7 +19,7 @@ namespace DomainModels.Entidades
 
         private int ApetitoBase;
 
-        public Criatura(EspecieCriatura especie)
+        public Criatura(TipoEspecie especie)
         {
             Id = Guid.NewGuid();
             Especie = especie;

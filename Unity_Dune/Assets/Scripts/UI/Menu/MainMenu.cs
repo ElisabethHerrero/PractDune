@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        //apiCliente = GetComponent<APICliente>();
+   
     }
 
     // Start is called before the first frame update
@@ -136,11 +136,11 @@ public class MainMenu : MonoBehaviour
     public void CrearArraken()
     {
         VisualSceneData.EscenarioSeleccionado = EscenarioJuego.Arrakeen;
-        StartCoroutine(apiCliente.CrearPartida( nombre.text, EscenarioJuego.Arrakeen, ArrakeenExito, ArrakeenError ));
+        StartCoroutine(apiCliente.CrearPartida( nombre.text, EscenarioJuego.Arrakeen, Exito, Error ));
 
         Debug.Log("Arrakeen");
 
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void CrearCaladan()
@@ -149,11 +149,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(apiCliente.CrearPartida(
         nombre.text,
         EscenarioJuego.Caladan,
-        ArrakeenExito,
-        ArrakeenError
+        Exito,
+        Error
         ));
 
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void CrearGiedi()
@@ -162,20 +162,26 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(apiCliente.CrearPartida(
         nombre.text,
         EscenarioJuego.GiediPrime,
-        ArrakeenExito,
-        ArrakeenError
+        Exito,
+        Error
         ));
 
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
 
-    private void ArrakeenExito(PartidaResumenDTO partida)
+    private void Exito(PartidaResumenDTO partida)
     {
-        
+        Debug.Log($"Partida {partida.Id} creada con éxito para {partida.NombreJugador} en {partida.Escenario}.");
+
+        // Guardar el ID de la partida globalmente
+        InfoPartida.CurrentGameId = partida.Id;
+
+        SceneManager.LoadScene(1);
+
     }
 
-    private void ArrakeenError(string error)
+    private void Error(string error)
     {
         Debug.LogError("No se creo la partida");
     }

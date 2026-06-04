@@ -3,6 +3,7 @@ using DomainModels.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DomainModels.Catalogs.Especie;
 
 namespace Dune.API.DTOs.Responses
 {
@@ -38,11 +39,11 @@ namespace Dune.API.DTOs.Responses
     {
         public Guid Id { get; set; }
         public string Nombre { get; set; }
-        public EnclaveTipo TipoEnclave { get; set; }
+        public EscenarioJuego TipoEnclave { get; set; }
         public int HectareasTotales { get; set; }
         public decimal SuministrosDisponibles { get; set; }
         public int VisitantesActuales { get; set; }
-        public int? NivelAdquisitivo { get; set; }
+        public NivelAdquisitivo NivelAdquisitivo { get; set; }
         public List<InstalacionDTO> Instalaciones { get; set; } = new List<InstalacionDTO>();
 
         public EnclaveDTO() { }
@@ -78,12 +79,12 @@ namespace Dune.API.DTOs.Responses
         {
             Id = instalacion.Id;
             Codigo = instalacion.Codigo;
-            TipoInstalacion = instalacion.TipoInstalacion;
-            CapacidadMaxima = instalacion.CapacidadMaxima;
+            TipoInstalacion = instalacion.tipoInstalacion;
+            CapacidadMaxima = instalacion.Capacidad;
             CriaturasActuales = instalacion.Criaturas.Count; // Asumiendo que CriaturasActuales es el conteo
-            SuministrosActuales = instalacion.SuministrosActuales;
-            MedioCompatible = instalacion.MedioCompatible;
-            AlimentacionCompatible = instalacion.AlimentacionCompatible;
+            SuministrosActuales = instalacion.Suministros;
+            MedioCompatible = instalacion.Medio;
+            AlimentacionCompatible = instalacion.Alimentacion;
             Criaturas = instalacion.Criaturas.Select(c => new CriaturaDTO(c)).ToList();
         }
     }
@@ -91,7 +92,7 @@ namespace Dune.API.DTOs.Responses
     public class CriaturaDTO
     {
         public Guid Id { get; set; }
-        public Especie Especie { get; set; }
+        public TipoEspecie Especie { get; set; }
         public Medio Medio { get; set; }
         public TipoAlimentacion Alimentacion { get; set; }
         public int Edad { get; set; }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using DomainModels.Enums;
 
+using DomainModels.Catalogs.Escenario;
+
 namespace DomainModels.Entidades
 {
     public class Partida
@@ -43,19 +45,19 @@ namespace DomainModels.Entidades
             // 2. Añadimos el enclave de exhibición según la config
             partida.Enclaves.Add(new Enclave(
                 config.NombreEnclave,
-                EnclaveTipo.Exhibicion,
+                tipoEscenario,
                 config.Hectareas,
                 config.Visitantes,
                 config.Nivel
-            ));
+             ));
 
             // 3. Añadimos el enclave de aclimatación común (Sección 3.3)
             partida.Enclaves.Add(new Enclave(
                 "Cuenca Experimental",
-                EnclaveTipo.Aclimatacion,
+                tipoEscenario,
                 5000,
                 0,
-                null
+                NivelAdquisitivo.Bajo
             ));
 
             partida.RegistrarEvento("Partida creada en " + tipoEscenario.ToString() + ".", TipoEvento.CreacionPartida, Severidad.Info);
@@ -66,7 +68,7 @@ namespace DomainModels.Entidades
 
         public void RegistrarEvento(string descripcion, TipoEvento tipo, Severidad severidad)
         {
-            HistorialEventos.Add(new RegistroEvento
+            HistorialEvento.Add(new RegistroEvento
             {
                 Id = Guid.NewGuid(),
                 FechaHora = DateTime.Now,

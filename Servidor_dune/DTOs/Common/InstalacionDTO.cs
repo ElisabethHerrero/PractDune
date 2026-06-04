@@ -1,4 +1,7 @@
-﻿namespace DTOs.Common
+﻿using DomainModels.Enums;
+using DTOs.COmmon;
+
+namespace DTOs.Common
 {
     public class InstalacionDto
     {
@@ -12,9 +15,9 @@
 
         public int SuministrosActuales { get; set; }
 
-        public MedioCriatura MedioCompatible { get; set; }
+        public Medio MedioCompatible { get; set; }
         public TipoAlimentacion AlimentacionCompatible { get; set; }
 
-        public List<CriaturaDto> Criaturas { get; set; } = new();
+        public List<CriaturaDTO> Criaturas { get; set; } = new();
     }
 }

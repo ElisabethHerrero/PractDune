@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using DomainModels;
 using DomainModels.Enums;
 using Persistence;
+using DomainModels.Entidades;
+using System.IO;
+using System.Linq;
+using DTOs.Request;
+using DTOs.Common;
+using Dune.API.DTOs.Responses;
+using DomainModels.Catalogs.Escenario;
 
 namespace DuneApi.Controllers
 {
@@ -47,7 +54,7 @@ namespace DuneApi.Controllers
                     success = true,
                     message = "Partida creada exitosamente",
                     partidaId = nuevaPartida.Id,
-                    aliasJugador = nuevaPartida.AliasJugador,
+                    aliasJugador = nuevaPartida.NombreJugador,
                     solaris = nuevaPartida.Solaris,
                     enclaves = nuevaPartida.Enclaves.Count
                 });
@@ -68,6 +75,51 @@ namespace DuneApi.Controllers
             try
             {
                 Partida partida = _gestor.CargarPartida(id);
+
+                // Mapear la entidad Partida a PartidaDetalle DTO
+                var partidaDetalle = new PartidaDetalleDTO(partida);
+                {
+                    id = partida.Id;
+                    partida.NombreJugador = partida.NombreJugador;
+                    partida.Escenario = partida.Escenario;
+                    partida.Solaris = partida.Solaris;
+                    partida.RondaActual = partida.RondaActual;
+                    partida.Enclaves.Select(e => new EnclaveDto
+                    {
+                        Id = e.Id,
+                        Nombre = e.Nombre,
+                        TipoEnclave = e.TipoEnclave,
+                        HectareasTotales = e.HectareasTotales,
+                        SuministrosDisponibles = e.SuministrosDisponibles,
+                        VisitantesActuales = e.VisitantesActuales,
+                        NivelAdquisitivo = e.NivelAdquisitivo,
+                        Instalaciones = e.Instalaciones.Select(i => new InstalacionDto
+                        {
+                            Id = i.Id,
+                            Codigo = i.Codigo,
+                            TipoInstalacion = i.tipoInstalacion,
+                            CapacidadMaxima = i.Capacidad, // Asumiendo que Capacidad es la capacidad máxima
+                            CriaturasActuales = i.Criaturas.Count, // Contar las criaturas actuales
+                            SuministrosActuales = i.Suministros,
+                            MedioCompatible = i.Medio,
+                            AlimentacionCompatible = i.Alimentacion
+                        }).ToList()
+                    }).ToList();
+                    partida.HistorialEvento.Select(ev => new EventoDto
+                    {
+                        FechaHora = ev.FechaHora,
+                        TipoEvento = ev.TipoEvento,
+                        Descripcion = ev.Descripcion,
+                        Severidad = ev.Severidad
+                    }).ToList();
+                };
+
+                return Ok(new
+                {
+                    success = true,
+                    message = "Partida cargada exitosamente",
+                    partida = partidaDetalle // Devolvemos el DTO de detalle
+                });
 
                 return Ok(new
                 {

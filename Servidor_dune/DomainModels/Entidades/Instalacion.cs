@@ -7,6 +7,7 @@ namespace DomainModels.Entidades
 
     public class Instalacion
     {
+        public Guid Id { get; set; }
         public TipoInstalacion tipoInstalacion { get; private set; }
         public string Codigo { get; private set; }
         public int Coste { get; private set; }
@@ -24,24 +25,26 @@ namespace DomainModels.Entidades
         //
 
         // Constructor privado para forzar el uso del método de fábrica
-        private Instalacion() { }
-
-        public static Instalacion CrearNueva(TipoInstalacion tipo, int coste)
+        public Instalacion(
+        TipoInstalacion tipoInstalacion,
+        string codigo,
+        int coste,
+        Medio medio,
+        TipoAlimentacion alimentacion,
+        int capacidad,
+        int hectareas,
+        int suministros,
+        TipoRecinto tipoRecinto)
         {
-            // Aquí podrías cargar más detalles de la instalación desde una configuración
-            // Por simplicidad, inicializamos con valores básicos.
-            return new Instalacion
-            {
-                tipoInstalacion = tipo,
-                Codigo = Guid.NewGuid().ToString().Substring(0, 8), // Código corto
-                Coste = coste,
-                Medio = Medio.Tierra, // Ejemplo, debería ser configurable
-                Alimentacion = TipoAlimentacion.Herbivoro, // Ejemplo
-                Capacidad = 10, // Ejemplo
-                Hectareas = 5, // Ejemplo
-                Suministros = 0, // Empieza sin suministros
-                TipoRecinto = TipoRecinto.Abierto // Ejemplo
-            };
+            this.tipoInstalacion = tipoInstalacion;
+            Codigo = codigo;
+            Coste = coste;
+            Medio = medio;
+            Alimentacion = alimentacion;
+            Capacidad = capacidad;
+            Hectareas = hectareas;
+            Suministros = suministros;
+            TipoRecinto = tipoRecinto;
         }
 
         //

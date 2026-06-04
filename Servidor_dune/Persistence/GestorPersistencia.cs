@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Collections.Generic;
 using DomainModels;
+using DomainModels.Entidades;
 
 
 namespace Persistence
@@ -35,7 +36,7 @@ namespace Persistence
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(partida, options);
             File.WriteAllText(filePath, jsonString);
-            Console.WriteLine($"Partida '{partida.AliasJugador}' guardada en: {filePath}");
+            Console.WriteLine($"Partida '{partida.NombreJugador}' guardada en: {filePath}");
         }
 
         public Partida CargarPartida(Guid partidaId)
@@ -55,7 +56,7 @@ namespace Persistence
             {
                 throw new InvalidOperationException($"No se pudo deserializar la partida desde {filePath}");
             }
-            Console.WriteLine($"Partida '{partida.AliasJugador}' cargada desde: {filePath}");
+            Console.WriteLine($"Partida '{partida.NombreJugador}' cargada desde: {filePath}");
             return partida;
         }
 

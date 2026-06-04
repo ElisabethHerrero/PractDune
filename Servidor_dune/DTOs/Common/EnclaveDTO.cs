@@ -1,10 +1,12 @@
-﻿namespace DTOs.Common
+﻿using DomainModels.Enums;
+
+namespace DTOs.Common
 {
     public class EnclaveDto
     {
         public Guid Id { get; set; }
         public string Nombre { get; set; }
-        public TipoEnclave TipoEnclave { get; set; }
+        public EscenarioJuego TipoEnclave { get; set; }
 
         public double HectareasTotales { get; set; }
         public int SuministrosDisponibles { get; set; }

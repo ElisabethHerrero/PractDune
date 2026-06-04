@@ -1,4 +1,4 @@
-﻿using DomainModels.Enums
+﻿using DomainModels.Enums;
 
 namespace DTOs.Requests 
 {

@@ -13,5 +13,7 @@ namespace ServidorDune.Services.Interfaces
         Partida EjecutarRonda(Guid idPartida);
         void GuardarPartida(Guid idPartida);
         Partida CargarPartida(Guid idPartida);
+
+        Instalacion ConstruirInstalacion(Guid partidaId, Guid enclaveId, string codigoInstalacion);
     }
 }

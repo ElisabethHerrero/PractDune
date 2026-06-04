@@ -5,19 +5,20 @@ using DomainModels.Enums;
 public static class EscenarioConfig
 {
     // Definimos los datos base de cada escenario
-    public static readonly Dictionary<EscenarioTipo, (long SolarisIniciales, string NombreEnclave, double Hectareas, int Visitantes, NivelAdquisitivo Nivel)>
-    DatosEscenarios = new Dictionary<EscenarioTipo, (long, string, double, int, NivelAdquisitivo)>
+    public static readonly Dictionary<EscenarioJuego, (long SolarisIniciales, string NombreEnclave, int Hectareas, int Visitantes, NivelAdquisitivo Nivel)>
+    DatosEscenarios = new Dictionary<EscenarioJuego, (long, string, int, int, NivelAdquisitivo)>
     {
             {
-                EscenarioTipo.Arrakeen,
-                (100000, "Arrakeen", 7700, 1000, NivelAdquisitivo.ALTO)
+                EscenarioJuego.Arrakeen,
+                (100000, "Arrakeen", 7700, 1000, NivelAdquisitivo.Alto)
             },
             {
-                EscenarioTipo.GiediPrime,
-                (50000, "Giedi Prime", 100, 2000, NivelAdquisitivo.BAJO)
+                EscenarioJuego.GiediPrime,
+                (50000, "Giedi Prime", 100, 2000, NivelAdquisitivo.Bajo)
             },
             {
-                EscenarioTipo.Caladan,
-                (150000, "Caladan", 10000, 3000, NivelAdquisitivo.MEDIO)
+                EscenarioJuego.Caladan,
+                (150000, "Caladan", 10000, 3000, NivelAdquisitivo.Medio)
             }
     };
+    }

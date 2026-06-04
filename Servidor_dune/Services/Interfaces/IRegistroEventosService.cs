@@ -9,6 +9,6 @@ namespace ServidorDune.Services.Interfaces
             Partida partida,
             TipoEvento tipoEvento,
             string descripcion,
-            SeveridadEvento severidad);
+            Severidad severidad);
     }
 }

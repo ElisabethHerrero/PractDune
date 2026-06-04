@@ -2,8 +2,13 @@
 using System;
 using System.Collections.Generic;
 using ServidorDune.Services.Interfaces;
-using Dune.API.DTOs.Requests;
+using DTOs.Requests;
+using DTOs.Common;
 using Dune.API.DTOs.Responses;
+using DTOs.Request;
+using DomainModels.Entidades;
+using ServidorDune.Services;
+
 
 namespace Dune.API.Controllers
 {
@@ -23,14 +28,14 @@ namespace Dune.API.Controllers
         /// Crea una nueva partida.
         /// </summary>
         [HttpPost("crear")]
-        public IActionResult CrearPartida([FromBody] CrearPartidaRequest request)
+        public IActionResult CrearPartida([FromBody] CrearPartida request)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(request.NombreJugador))
+                if (string.IsNullOrWhiteSpace(request.Nombre))
                     return BadRequest(new OperacionResultado { Success = false, Message = "El nombre del jugador es requerido." });
 
-                var partida = _partidaService.CrearPartida(request.NombreJugador, request.Escenario);
+                var partida = _partidaService.CrearPartida(request.Nombre, request.Escenario);
                 return Ok(new PartidaResumenDTO(partida) { Success = true, Message = "Partida creada exitosamente." });
             }
             catch (ArgumentException ex)
@@ -136,7 +141,7 @@ namespace Dune.API.Controllers
         /// DELETE: api/partida/eliminar/{id}
         /// Elimina una partida guardada.
         /// </summary>
-        [HttpDelete("eliminar/{id}")]
+        /*[HttpDelete("eliminar/{id}")]
         public IActionResult EliminarPartida(Guid id)
         {
             try
@@ -152,7 +157,7 @@ namespace Dune.API.Controllers
             {
                 return StatusCode(500, new OperacionResultado { Success = false, Message = $"Error interno al eliminar partida: {ex.Message}" });
             }
-        }
+        }*/
 
         [HttpPost("construir-instalacion")]
         public IActionResult ConstruirInstalacion([FromBody] ConstruirInstalacionRequest request)
@@ -162,7 +167,7 @@ namespace Dune.API.Controllers
                 Instalacion nuevaInstalacion = _partidaService.ConstruirInstalacion(
                     request.PartidaId,
                     request.EnclaveId,
-                    request.TipoInstalacion
+                    request.Codigo
                 );
 
                 return Ok(new

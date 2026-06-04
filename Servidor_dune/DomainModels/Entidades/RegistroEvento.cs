@@ -1,4 +1,5 @@
 ﻿using System;
+using DomainModels.Enums;
 
 namespace DomainModels.Entidades
 {
@@ -9,7 +10,7 @@ namespace DomainModels.Entidades
 
         public TipoEvento TipoEvento { get; set; }
         public string Descripcion { get; set; }
-        public SeveridadEvento Severidad { get; set; }
+        public Severidad Severidad { get; set; }
 
         public Guid PartidaId { get; set; }
     }

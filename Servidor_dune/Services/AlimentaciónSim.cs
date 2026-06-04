@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DomainModels.entidades;
+using DomainModels.Entidades;
 
 public class AlimentacionSim
 {

@@ -11,7 +11,7 @@ namespace ServidorDune.Services
             Partida partida,
             TipoEvento tipoEvento,
             string descripcion,
-            SeveridadEvento severidad)
+            Severidad severidad)
         {
             if (partida == null)
                 throw new ArgumentNullException(nameof(partida));

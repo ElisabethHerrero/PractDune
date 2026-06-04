@@ -1,8 +1,10 @@
 ﻿using System;
+using DomainModels.Enums;
+
 namespace DomainModels.Catalogs.Especie
 {
 
-    public enum Especie
+    public enum TipoEspecie
     {
         GusanoArenaJuvenil,
         TigreLaza,
@@ -13,6 +15,7 @@ namespace DomainModels.Catalogs.Especie
 
     public class Especie
     {
+        public TipoEspecie especie { get; init; }
         public Medio Medio { get; init; }
         public TipoAlimentacion Alimentacion { get; init; }
         public int EdadAdulta { get; init; }

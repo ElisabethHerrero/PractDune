@@ -24,11 +24,11 @@ namespace ServidorDune.Services
 
             foreach (Enclave enclave in partida.Enclaves)
             {
-                bool esAclimatacion = enclave.TipoEnclave == TipoEnclave.Aclimatacion;
+                //bool esAclimatacion = enclave.TipoEnclave == EscenarioJuego.Aclimatacion;
 
                 foreach (Instalacion instalacion in enclave.Instalaciones)
                 {
-                    instalacion.AlimentarCriaturas(esAclimatacion);
+                    instalacion.AlimentarCriaturas(true); //esAclimatación iba aqui
                 }
             }
 
@@ -41,7 +41,7 @@ namespace ServidorDune.Services
                 partida,
                 TipoEvento.SimulacionRonda,
                 $"Se ejecutó la ronda {partida.RondaActual}.",
-                SeveridadEvento.Info);
+                Severidad.Info);
         }
     }
 }

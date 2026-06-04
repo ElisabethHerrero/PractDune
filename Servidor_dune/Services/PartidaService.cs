@@ -1,5 +1,6 @@
 ﻿using DomainModels.Entidades;
 using DomainModels.Enums;
+using InstalacionesConf;
 using ServidorDune.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace ServidorDune.Services
                 partida,
                 TipoEvento.CreacionPartida,
                 $"Partida creada para {aliasJugador} en el escenario {escenario}.",
-                SeveridadEvento.Info);
+                Severidad.Info);
 
             _partidas[partida.Id] = partida;
             _persistenciaService.GuardarPartida(partida);
@@ -82,7 +83,7 @@ namespace ServidorDune.Services
                 partida,
                 TipoEvento.GuardadoPartida,
                 "Partida guardada correctamente.",
-                SeveridadEvento.Info);
+                Severidad.Info);
 
             _persistenciaService.GuardarPartida(partida);
         }
@@ -94,5 +95,82 @@ namespace ServidorDune.Services
 
             return partida;
         }
+
+
+        public Instalacion ConstruirInstalacion(Guid partidaId, Guid enclaveId, string codigoInstalacion)
+        {
+            // 1. Obtener la partida y el enclave
+            Partida partida = ObtenerPartida(partidaId);
+            Enclave enclave = partida.Enclaves.FirstOrDefault(e => e.Id == enclaveId);
+
+            if (enclave == null)
+                throw new ArgumentException($"Enclave no encontrado.");
+
+            // 2. Buscar la "plantilla" en el catálogo
+            if (!InstalacionesCatalogo.Todas.TryGetValue(codigoInstalacion, out var plantilla))
+                throw new ArgumentException($"El código {codigoInstalacion} no existe en el catálogo.");
+
+            // 3. Validar si el jugador tiene suficiente dinero
+            if (partida.Solaris < plantilla.Coste)
+                throw new InvalidOperationException("Solaris insuficientes.");
+
+            // 4. Crear la nueva instancia basada en la plantilla
+            // Usamos el constructor con los datos de la plantilla
+            Instalacion nuevaInstalacion = new Instalacion(
+                plantilla.tipoInstalacion,
+                plantilla.Codigo,
+                plantilla.Coste,
+                plantilla.Medio,
+                plantilla.Alimentacion,
+                plantilla.Capacidad,
+                plantilla.Hectareas,
+                plantilla.Suministros, // Aquí se aplican los suministros iniciales de tu tabla
+                plantilla.TipoRecinto
+            )
+            {
+                Id = Guid.NewGuid() // Asignamos un ID único a esta nueva construcción
+            };
+
+            // 5. Descontar dinero y añadir al enclave
+            partida.Solaris -= nuevaInstalacion.Coste;
+            enclave.Instalaciones.Add(nuevaInstalacion);
+
+            // 6. Registrar evento y guardar
+            _registroEventosService.RegistrarEvento(
+                partida,
+                TipoEvento.ConstruccionInstalacion,
+                $"Construida {nuevaInstalacion.Codigo} en {enclave.Nombre}. Coste: {nuevaInstalacion.Coste}", Severidad.Info);
+
+            _persistenciaService.GuardarPartida(partida);
+
+            return nuevaInstalacion;
+        }
+
+
+
+        // Método auxiliar para obtener el coste (debería ser más robusto en un sistema real)
+
+        int ObtenerCosteInstalacion(TipoRecinto tipoInstalacion)
+        {
+            switch (tipoInstalacion)
+            {
+                case TipoRecinto.RocaSellada:
+                    return 1000;
+                case TipoRecinto.EscudoEstático:
+                    return 2500;
+                case TipoRecinto.CupulaBlindada:
+                    return 5000;
+                case TipoRecinto.PozoReforzado:
+                    return 3500;
+                default:
+                    return 1000; // Coste por defecto
+            }
+        }
+        
+
+
+
+
+
     }
 }
