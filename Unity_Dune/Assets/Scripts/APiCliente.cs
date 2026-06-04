@@ -116,4 +116,27 @@ public class APICliente : MonoBehaviour
     }
 
     // ... Otros métodos para GuardarPartida, EliminarPartida, etc.
+
+    public IEnumerator CargarPartidaCo(Guid partidaId)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(BASE_URL + $"/cargar/{partidaId}"))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError($"Error al cargar partida {partidaId}: {webRequest.error}");
+            }
+            else
+            {
+                string jsonResponse = webRequest.downloadHandler.text;
+                PartidaDetalleDTO partidaCargada = JsonConvert.DeserializeObject<PartidaDetalleDTO>(jsonResponse);
+                Debug.Log($"Partida cargada exitosamente: {partidaCargada.NombreJugador} - Solaris: {partidaCargada.Solaris}");
+                
+            }
+        }
+    }
+
+
+
 }
