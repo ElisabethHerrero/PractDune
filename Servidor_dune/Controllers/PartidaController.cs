@@ -153,5 +153,38 @@ namespace Dune.API.Controllers
                 return StatusCode(500, new OperacionResultado { Success = false, Message = $"Error interno al eliminar partida: {ex.Message}" });
             }
         }
+
+        [HttpPost("construir-instalacion")]
+        public IActionResult ConstruirInstalacion([FromBody] ConstruirInstalacionRequest request)
+        {
+            try
+            {
+                Instalacion nuevaInstalacion = _partidaService.ConstruirInstalacion(
+                    request.PartidaId,
+                    request.EnclaveId,
+                    request.TipoInstalacion
+                );
+
+                return Ok(new
+                {
+                    success = true,
+                    message = $"Instalación {nuevaInstalacion.tipoInstalacion} construida con éxito.",
+                    instalacionId = nuevaInstalacion.Codigo, // O Id si usas Guid
+                    solarisRestantes = _partidaService.ObtenerPartida(request.PartidaId).Solaris
+                });
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(new { success = false, error = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { success = false, error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, error = $"Error interno al construir instalación: {ex.Message}" });
+            }
+        }
     }
 }

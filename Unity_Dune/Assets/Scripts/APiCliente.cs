@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using System.Text;
 
 public class APICliente : MonoBehaviour
 {
@@ -137,6 +138,55 @@ public class APICliente : MonoBehaviour
         }
     }
 
+    //
+    /*
+    private IEnumerator ConstruirInstalacionCo(string tipoInstalacion)
+    {
+        if (string.IsNullOrEmpty(currentPartidaId) || string.IsNullOrEmpty(currentEnclaveId))
+        {
+            Debug.LogError("Partida o Enclave no seleccionados. No se puede construir.");
+            yield break;
+        }
+
+        ConstruirInstalacionRequestUnity requestData = new ConstruirInstalacionRequestUnity
+        {
+            PartidaId = currentPartidaId,
+            EnclaveId = currentEnclaveId,
+            TipoInstalacion = tipoInstalacion
+        };
+
+        string jsonRequestBody = JsonConvert.SerializeObject(requestData);
+
+        using (UnityWebRequest webRequest = new UnityWebRequest(API_BASE_URL + "/construir-instalacion", "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonRequestBody);
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError($"Error al construir instalación: {webRequest.error}");
+            }
+            else
+            {
+                string jsonResponse = webRequest.downloadHandler.text;
+                ConstruirInstalacionResponse response = JsonConvert.DeserializeObject<ConstruirInstalacionResponse>(jsonResponse);
+                if (response.success)
+                {
+                    Debug.Log($"Instalación {response.instalacionId} construida. Solaris restantes: {response.solarisRestantes}");
+                    // Actualizar la UI con los nuevos Solaris y la nueva instalación
+                }
+                else
+                {
+                    Debug.LogError($"Fallo al construir instalación: {response.message}");
+                }
+            }
+        }
+    */
 
 
-}
+
+    }
