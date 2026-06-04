@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 public class APICliente : MonoBehaviour
 {
-    private const string BASE_URL = " http://localhost:5079"; 
+    private const string BASE_URL = "http://localhost:5079"; 
 
     public static APICliente Instance { get; private set; }
 

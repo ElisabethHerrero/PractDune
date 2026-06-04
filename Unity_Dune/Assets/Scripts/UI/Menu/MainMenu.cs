@@ -26,13 +26,13 @@ public class MainMenu : MonoBehaviour
 
     public GameObject SinPartidas;
 
-    private APICliente apiCliente;
+    [SerializeField] private APICliente apiCliente;
 
 
 
     private void Awake()
     {
-        apiCliente = GetComponent<APICliente>();
+        //apiCliente = GetComponent<APICliente>();
     }
 
     // Start is called before the first frame update
@@ -41,6 +41,10 @@ public class MainMenu : MonoBehaviour
         CanvaInicio.SetActive(true);
         panelCargarPartida.SetActive(false);
         CanvaNuevaPartida.SetActive(false);
+
+        Debug.Log(nombre);
+        Debug.Log(apiCliente);
+        
     }
 
     // Update is called once per frame
@@ -132,12 +136,11 @@ public class MainMenu : MonoBehaviour
     public void CrearArraken()
     {
         VisualSceneData.EscenarioSeleccionado = EscenarioJuego.Arrakeen;
-        StartCoroutine(apiCliente.CrearPartida(
-        nombre.text,
-        EscenarioJuego.Arrakeen,
-        ArrakeenExito,
-        ArrakeenError
-        ));
+        StartCoroutine(apiCliente.CrearPartida( nombre.text, EscenarioJuego.Arrakeen, ArrakeenExito, ArrakeenError ));
+
+        Debug.Log("Arrakeen");
+
+        SceneManager.LoadScene(1);
     }
 
     public void CrearCaladan()
@@ -149,6 +152,8 @@ public class MainMenu : MonoBehaviour
         ArrakeenExito,
         ArrakeenError
         ));
+
+        SceneManager.LoadScene(1);
     }
 
     public void CrearGiedi()
@@ -160,12 +165,14 @@ public class MainMenu : MonoBehaviour
         ArrakeenExito,
         ArrakeenError
         ));
+
+        SceneManager.LoadScene(1);
     }
 
 
     private void ArrakeenExito(PartidaResumenDTO partida)
     {
-        SceneManager.LoadScene(1);
+        
     }
 
     private void ArrakeenError(string error)
