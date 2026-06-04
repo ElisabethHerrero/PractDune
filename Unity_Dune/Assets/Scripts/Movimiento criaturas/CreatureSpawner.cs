@@ -112,4 +112,11 @@ public class CreatureSpawner : MonoBehaviour
 
         return true;
     }
+
+    public void SetActiveMap(Grid newGrid, Tilemap newWalkableTilemap, BuildingPlacer newBuildingPlacer)
+    {
+        grid = newGrid;
+        walkableTilemap = newWalkableTilemap;
+        buildingPlacer = newBuildingPlacer;
+    }
 }

@@ -8,11 +8,7 @@ public class MovCamara : MonoBehaviour
     [SerializeField] private float minZoom = 1f;
     [SerializeField] private float maxZoom = 40f;
 
-    [Header("Inicio")]
-    [SerializeField] private Vector2 posicionInicial = Vector2.zero;
-    [SerializeField] private bool empezarConZoomMaximo = true;
-
-    [Header("Mapa")]
+    [Header("Mapa activo")]
     [SerializeField] private SpriteRenderer mapRenderer;
 
     private Camera cam;
@@ -27,27 +23,15 @@ public class MovCamara : MonoBehaviour
     {
         cam = Camera.main;
 
-        if (mapRenderer == null)
+        // Si el mapa ya está asignado desde el Inspector, lo usa.
+        // Si no, GameMapManager se lo asignará después con SetMapRenderer().
+        if (mapRenderer != null)
         {
-            Debug.LogError("Falta asignar el SpriteRenderer del mapa en MovCamara.");
-            return;
+            CalculateMapLimits();
+            CenterCameraOnMap();
+            cam.orthographicSize = maxZoom;
+            ClampCamera();
         }
-
-        CalculateMapLimits();
-
-        // Centro real de la imagen del mapa
-        Vector3 centroMapa = mapRenderer.bounds.center;
-
-        transform.position = new Vector3(
-            centroMapa.x,
-            centroMapa.y,
-            transform.position.z
-        );
-
-        // Zoom inicial máximo, es decir, lo más alejado
-        cam.orthographicSize = maxZoom;
-
-        ClampCamera();
     }
 
     private void Update()
@@ -57,21 +41,16 @@ public class MovCamara : MonoBehaviour
         ClampCamera();
     }
 
-    private void CalculateMapLimits()
-    {
-        Bounds bounds = mapRenderer.bounds;
-
-        minX = bounds.min.x;
-        maxX = bounds.max.x;
-        minY = bounds.min.y;
-        maxY = bounds.max.y;
-    }
-
     private void HandleDrag()
     {
+        if (cam == null)
+            return;
+
+        // Evita mover la cámara si el ratón está encima de un botón/UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
+        // Botón central del ratón
         if (Input.GetMouseButtonDown(2))
         {
             dragOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -92,6 +71,9 @@ public class MovCamara : MonoBehaviour
 
     private void HandleZoom()
     {
+        if (cam == null)
+            return;
+
         float scroll = Input.mouseScrollDelta.y;
 
         if (Mathf.Abs(scroll) < 0.01f)
@@ -103,6 +85,33 @@ public class MovCamara : MonoBehaviour
             cam.orthographicSize,
             minZoom,
             maxZoom
+        );
+    }
+
+    private void CalculateMapLimits()
+    {
+        if (mapRenderer == null)
+            return;
+
+        Bounds bounds = mapRenderer.bounds;
+
+        minX = bounds.min.x;
+        maxX = bounds.max.x;
+        minY = bounds.min.y;
+        maxY = bounds.max.y;
+    }
+
+    private void CenterCameraOnMap()
+    {
+        if (mapRenderer == null)
+            return;
+
+        Vector3 center = mapRenderer.bounds.center;
+
+        transform.position = new Vector3(
+            center.x,
+            center.y,
+            transform.position.z
         );
     }
 
@@ -151,5 +160,29 @@ public class MovCamara : MonoBehaviour
             clampedY,
             transform.position.z
         );
+    }
+
+    public void SetMapRenderer(SpriteRenderer newMapRenderer)
+    {
+        mapRenderer = newMapRenderer;
+
+        if (cam == null)
+        {
+            cam = Camera.main;
+        }
+
+        if (mapRenderer == null)
+        {
+            Debug.LogError("No se puede asignar el mapa a la cámara porque el MapRenderer es null.");
+            return;
+        }
+
+        CalculateMapLimits();
+
+        CenterCameraOnMap();
+
+        cam.orthographicSize = maxZoom;
+
+        ClampCamera();
     }
 }

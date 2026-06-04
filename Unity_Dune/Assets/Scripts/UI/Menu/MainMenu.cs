@@ -131,6 +131,7 @@ public class MainMenu : MonoBehaviour
 
     public void CrearArraken()
     {
+        VisualSceneData.EscenarioSeleccionado = EscenarioJuego.Arrakeen;
         StartCoroutine(apiCliente.CrearPartida(
         nombre.text,
         EscenarioJuego.Arrakeen,
@@ -141,6 +142,7 @@ public class MainMenu : MonoBehaviour
 
     public void CrearCaladan()
     {
+        VisualSceneData.EscenarioSeleccionado = EscenarioJuego.Caladan;
         StartCoroutine(apiCliente.CrearPartida(
         nombre.text,
         EscenarioJuego.Caladan,
@@ -151,6 +153,7 @@ public class MainMenu : MonoBehaviour
 
     public void CrearGiedi()
     {
+        VisualSceneData.EscenarioSeleccionado = EscenarioJuego.GiediPrime;
         StartCoroutine(apiCliente.CrearPartida(
         nombre.text,
         EscenarioJuego.GiediPrime,
@@ -171,6 +174,10 @@ public class MainMenu : MonoBehaviour
     }
 
 
+    public void CargarJuegoTemporal()
+    {
+        SceneManager.LoadScene(1);
+    }
 
 
 
@@ -179,7 +186,6 @@ public class MainMenu : MonoBehaviour
 
 
 
-    
 
 
 }

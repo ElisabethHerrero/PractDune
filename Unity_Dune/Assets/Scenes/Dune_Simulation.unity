@@ -10687,6 +10687,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618679879}
   m_CullTransparentMesh: 1
+--- !u!1 &1700530998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700531000}
+  - component: {fileID: 1700530999}
+  m_Layer: 0
+  m_Name: GameMapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1700530999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700530998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39d84629391e98428d7ec94fbd6cfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapas:
+  - escenario: 0
+    mapRoot: {fileID: 702411655}
+    mapRenderer: {fileID: 702411656}
+    grid: {fileID: 1990711472}
+    buildTilemap: {fileID: 463800813}
+    walkableTilemap: {fileID: 463800813}
+  - escenario: 1
+    mapRoot: {fileID: 223218170}
+    mapRenderer: {fileID: 223218171}
+    grid: {fileID: 1167712527}
+    buildTilemap: {fileID: 1882753858}
+    walkableTilemap: {fileID: 1882753858}
+  - escenario: 2
+    mapRoot: {fileID: 143481827}
+    mapRenderer: {fileID: 143481828}
+    grid: {fileID: 440992309}
+    buildTilemap: {fileID: 1740432617}
+    walkableTilemap: {fileID: 1740432617}
+  buildingPlacer: {fileID: 682596728}
+  creatureSpawner: {fileID: 167301154}
+  movCamara: {fileID: 1751598525}
+--- !u!4 &1700531000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700530998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 511.7046, y: 149.72331, z: -3.1818044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740432614
 GameObject:
   m_ObjectHideFlags: 0
@@ -19672,8 +19738,6 @@ MonoBehaviour:
   zoomSpeed: 7
   minZoom: 17
   maxZoom: 180
-  posicionInicial: {x: 0, y: 0}
-  empezarConZoomMaximo: 1
   mapRenderer: {fileID: 702411656}
 --- !u!1 &1817995741
 GameObject:
@@ -30006,3 +30070,4 @@ SceneRoots:
   - {fileID: 702411657}
   - {fileID: 143481829}
   - {fileID: 223218172}
+  - {fileID: 1700531000}

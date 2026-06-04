@@ -213,4 +213,14 @@ public class BuildingPlacer : MonoBehaviour
     {
         return occupiedCells.Contains(cell);
     }
+
+    public void SetActiveMap(Grid newGrid, Tilemap newBuildTilemap)
+    {
+        grid = newGrid;
+        buildTilemap = newBuildTilemap;
+
+        occupiedCells.Clear();
+
+        CancelSelection();
+    }
 }
