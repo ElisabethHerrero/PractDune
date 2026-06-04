@@ -1,26 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MovCamara : MonoBehaviour
 {
     [Header("Zoom")]
     [SerializeField] private float zoomSpeed = 5f;
-    [SerializeField] private float minZoom = 2f;
-    [SerializeField] private float maxZoom = 20f;
+    [SerializeField] private float minZoom = 1f;
+    [SerializeField] private float maxZoom = 40f;
 
-    [Header("Map Limits")]
-    [SerializeField] private float minX = 0f;
-    [SerializeField] private float maxX = 200f;
-    [SerializeField] private float minY = 0f;
-    [SerializeField] private float maxY = 100f;
+    [Header("Mapa")]
+    [SerializeField] private SpriteRenderer mapRenderer;
 
     private Camera cam;
     private Vector3 dragOrigin;
 
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
+
     private void Start()
     {
         cam = Camera.main;
+
+        if (mapRenderer == null)
+        {
+            Debug.LogError("Falta asignar el SpriteRenderer del mapa en MovCamara.");
+            return;
+        }
+
+        CalculateMapLimits();
+        ClampCamera();
     }
 
     private void Update()
@@ -30,8 +40,22 @@ public class MovCamara : MonoBehaviour
         ClampCamera();
     }
 
+    private void CalculateMapLimits()
+    {
+        Bounds bounds = mapRenderer.bounds;
+
+        minX = bounds.min.x;
+        maxX = bounds.max.x;
+        minY = bounds.min.y;
+        maxY = bounds.max.y;
+    }
+
     private void HandleDrag()
     {
+        // Evita mover la cámara si estás usando botones de UI
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            return;
+
         // Botón central del ratón
         if (Input.GetMouseButtonDown(2))
         {
@@ -69,6 +93,9 @@ public class MovCamara : MonoBehaviour
 
     private void ClampCamera()
     {
+        if (cam == null || mapRenderer == null)
+            return;
+
         float cameraHeight = cam.orthographicSize;
         float cameraWidth = cameraHeight * cam.aspect;
 
@@ -78,7 +105,6 @@ public class MovCamara : MonoBehaviour
         float clampedX;
         float clampedY;
 
-        // Si el mapa es más pequeño que lo que ve la cámara
         if (cameraWidth * 2f >= mapWidth)
         {
             clampedX = (minX + maxX) * 0.5f;
