@@ -1,12 +1,10 @@
 using ServidorDune.Services;
 using ServidorDune.Services.Interfaces;
+using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IPersistenciaService, PersistenciaService>(); // Implementación que usa GestorPersistencia
-builder.Services.AddSingleton<ISimulacionService, SimulacionService>();
-builder.Services.AddSingleton<IRegistroEventosService, RegistroEventosService>();
-builder.Services.AddSingleton<IPartidaService, PartidaService>();
+
 
 
 // Add services to the container.
@@ -15,6 +13,13 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+// Registramos el GestorPersistencia indicándole que guarde los JSON en la carpeta "DATA"
+builder.Services.AddSingleton<GestorPersistencia>(sp => 
+    new GestorPersistencia(Path.Combine(Directory.GetCurrentDirectory(), "DATA")));
+
 
 // REGISTRO DE SERVICIOS
 
