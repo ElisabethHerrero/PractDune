@@ -32,3 +32,4 @@ C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\refint\Serv
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\Servidor_dune.pdb
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\Servidor_dune.genruntimeconfig.cache
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\ref\Servidor_dune.dll
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\690dff8c-ab79-4f34-8c36-1959a9e27f5f.json
