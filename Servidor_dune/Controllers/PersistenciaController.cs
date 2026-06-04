@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using DomainModels;
@@ -121,12 +123,7 @@ namespace DuneApi.Controllers
                     partida = partidaDetalle // Devolvemos el DTO de detalle
                 });
 
-                return Ok(new
-                {
-                    success = true,
-                    message = "Partida cargada exitosamente",
-                    partida = partida
-                });
+                
             }
             catch (FileNotFoundException)
             {
@@ -220,3 +217,6 @@ namespace DuneApi.Controllers
         public EscenarioJuego Escenario { get; set; }
     }
 }
+
+
+*/

@@ -8,7 +8,7 @@ using System.Text;
 
 public class APICliente : MonoBehaviour
 {
-    private const string BASE_URL = "http://localhost:5079"; 
+    private const string BASE_URL = "http://localhost:5018/api/Partida"; 
 
     public static APICliente Instance { get; private set; }
 
@@ -27,15 +27,17 @@ public class APICliente : MonoBehaviour
 
     public IEnumerator CrearPartida(string nombreJugador, EscenarioJuego escenario, Action<PartidaResumenDTO> onSuccess, Action<string> onError)
     {
-        var requestData = new CrearPartidaRequest { NombreJugador = nombreJugador, Escenario = escenario };
+        var requestData = new CrearPartidaRequest { Nombre = nombreJugador, Escenario = escenario };
         string json = JsonConvert.SerializeObject(requestData);
 
-        using (UnityWebRequest webRequest = new UnityWebRequest(BASE_URL + "/crear", "POST"))
+        using (UnityWebRequest webRequest = new UnityWebRequest(BASE_URL + "/Crear", "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
             webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
             webRequest.downloadHandler = new DownloadHandlerBuffer();
             webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            webRequest.certificateHandler = new BypassCertificate();
 
             yield return webRequest.SendWebRequest();
 
@@ -50,6 +52,14 @@ public class APICliente : MonoBehaviour
                 PartidaResumenDTO response = JsonConvert.DeserializeObject<PartidaResumenDTO>(webRequest.downloadHandler.text);
                 onSuccess?.Invoke(response);
             }
+        }
+    }
+
+    public class BypassCertificate : UnityEngine.Networking.CertificateHandler
+    {
+        protected override bool ValidateCertificate(byte[] certificateData)
+        {
+            return true; // Confía en todos los certificados
         }
     }
 

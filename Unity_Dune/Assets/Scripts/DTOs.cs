@@ -9,7 +9,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class CrearPartidaRequest
 {
-    public string NombreJugador;
+    public string Nombre;
     // El enum EscenarioJuego del backend se envía como string
     public EscenarioJuego Escenario;
 }

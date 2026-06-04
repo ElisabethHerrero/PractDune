@@ -1,0 +1,51 @@
+{
+  "Id": "690dff8c-ab79-4f34-8c36-1959a9e27f5f",
+  "NombreJugador": "asdf",
+  "Escenario": 0,
+  "Solaris": 100000,
+  "RondaActual": 0,
+  "EstadoPartida": 1,
+  "MesActual": 1,
+  "Enclaves": [
+    {
+      "Id": "8ec78d62-1c37-49fa-8b3e-a6a5736085d0",
+      "Nombre": "Arrakeen",
+      "TipoEnclave": 0,
+      "HectareasTotales": 7700,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 1000,
+      "VisitantesActuales": 1000,
+      "NivelAdquisitivo": 2,
+      "Instalaciones": []
+    },
+    {
+      "Id": "278513d0-8a62-4d3f-af5c-33a736086157",
+      "Nombre": "Cuenca Experimental",
+      "TipoEnclave": 0,
+      "HectareasTotales": 5000,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 0,
+      "VisitantesActuales": 0,
+      "NivelAdquisitivo": 0,
+      "Instalaciones": []
+    }
+  ],
+  "HistorialEvento": [
+    {
+      "Id": "f5795a50-f957-4d16-b9f8-17d689670ca2",
+      "FechaHora": "2026-06-04T21:38:52.4831057+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada en Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "690dff8c-ab79-4f34-8c36-1959a9e27f5f"
+    },
+    {
+      "Id": "2d544ff1-2486-4d7f-983f-4cfa5faec003",
+      "FechaHora": "2026-06-04T21:38:52.484129+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada para asdf en el escenario Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "690dff8c-ab79-4f34-8c36-1959a9e27f5f"
+    }
+  ]
+}
