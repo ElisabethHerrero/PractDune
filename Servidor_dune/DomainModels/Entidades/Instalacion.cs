@@ -21,6 +21,31 @@ namespace DomainModels.Entidades
 
         public bool TieneCapacidad() => Criaturas.Count < Capacidad;
 
+        //
+
+        // Constructor privado para forzar el uso del método de fábrica
+        private Instalacion() { }
+
+        public static Instalacion CrearNueva(TipoInstalacion tipo, int coste)
+        {
+            // Aquí podrías cargar más detalles de la instalación desde una configuración
+            // Por simplicidad, inicializamos con valores básicos.
+            return new Instalacion
+            {
+                tipoInstalacion = tipo,
+                Codigo = Guid.NewGuid().ToString().Substring(0, 8), // Código corto
+                Coste = coste,
+                Medio = Medio.Tierra, // Ejemplo, debería ser configurable
+                Alimentacion = TipoAlimentacion.Herbivoro, // Ejemplo
+                Capacidad = 10, // Ejemplo
+                Hectareas = 5, // Ejemplo
+                Suministros = 0, // Empieza sin suministros
+                TipoRecinto = TipoRecinto.Abierto // Ejemplo
+            };
+        }
+
+        //
+
         public void AñadirCriatura(Criatura c)
         {
             if (!TieneCapacidad())
