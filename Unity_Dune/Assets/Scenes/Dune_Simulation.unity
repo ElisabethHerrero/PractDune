@@ -360,6 +360,15 @@ MonoBehaviour:
   buildingPlacer: {fileID: 682596728}
   creaturePrefabs:
   - {fileID: 2225019323749870738, guid: fd466446cba9b6a4eaf64952ca151d71, type: 3}
+  - {fileID: 6489645750825552898, guid: 4af03d552f9bc074eb79239e84861d5b, type: 3}
+  - {fileID: 6826709703815038213, guid: 76f68da2831b6214390d7773841cbc03, type: 3}
+  - {fileID: 4085634744916123571, guid: ad79b9817d6374c408a8a831094db0ec, type: 3}
+  - {fileID: 407544192976570843, guid: 33049c1f208a2c0409434ea1f57610d0, type: 3}
+  - {fileID: 8278560505438324379, guid: 94c5d5162250dc34aa14b7a18ff30c2c, type: 3}
+  - {fileID: 8846854847021623726, guid: 77cb70d01c7d47244a86ced6d5e72c47, type: 3}
+  - {fileID: 8105061466682803290, guid: 3cafe2a76e4f1f74d9a206bf89cf37b8, type: 3}
+  - {fileID: 7443286746291380104, guid: 8022daffc4fcd66468c4193011167d6b, type: 3}
+  - {fileID: 8495653537102222222, guid: b69ea749daa63874bb50fddbd01ea504, type: 3}
 --- !u!4 &167301155
 Transform:
   m_ObjectHideFlags: 0

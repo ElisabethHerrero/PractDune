@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1150757051090533576}
   - component: {fileID: 2656681906664214952}
   - component: {fileID: 154200917238974682}
+  - component: {fileID: 788531808446435376}
   m_Layer: 0
   m_Name: Tigre_bebe
   m_TagString: Untagged
@@ -106,3 +107,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &788531808446435376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495653537102222222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b9c2b29850b86469cb89b12b8c621d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  walkableTilemap: {fileID: 0}
+  buildingPlacer: {fileID: 0}
+  moveSpeed: 8.5
+  minWaitTime: 0.2
+  maxWaitTime: 1.2

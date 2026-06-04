@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2532590399406759034}
   - component: {fileID: 8409165358765653643}
   - component: {fileID: 2132846545234701540}
+  - component: {fileID: -2758405326747738398}
   m_Layer: 0
   m_Name: Halcon
   m_TagString: Untagged
@@ -106,3 +107,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2758405326747738398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407544192976570843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b9c2b29850b86469cb89b12b8c621d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  walkableTilemap: {fileID: 0}
+  buildingPlacer: {fileID: 0}
+  moveSpeed: 9
+  minWaitTime: 0.2
+  maxWaitTime: 1.2

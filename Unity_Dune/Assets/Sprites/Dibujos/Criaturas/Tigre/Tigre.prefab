@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5010289245868902810}
   - component: {fileID: 4099772388870322063}
   - component: {fileID: 2837452983159623707}
+  - component: {fileID: 2982195710125439166}
   m_Layer: 0
   m_Name: Tigre
   m_TagString: Untagged
@@ -106,3 +107,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2982195710125439166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7443286746291380104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b9c2b29850b86469cb89b12b8c621d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 0}
+  walkableTilemap: {fileID: 0}
+  buildingPlacer: {fileID: 0}
+  moveSpeed: 7.5
+  minWaitTime: 0.2
+  maxWaitTime: 1.2
