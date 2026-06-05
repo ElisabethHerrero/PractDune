@@ -1,0 +1,160 @@
+{
+  "Id": "324db59a-3894-4127-af2d-3f034622f267",
+  "NombreJugador": "asdf",
+  "Escenario": 0,
+  "Solaris": 88000,
+  "RondaActual": 3,
+  "EstadoPartida": 1,
+  "MesActual": 1,
+  "Enclaves": [
+    {
+      "Id": "841bd4c8-803b-404d-ba16-07b328ab85f6",
+      "Nombre": "Arrakeen",
+      "TipoEnclave": 0,
+      "HectareasTotales": 7700,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 1000,
+      "VisitantesActuales": 1000,
+      "NivelAdquisitivo": 2,
+      "Instalaciones": [
+        {
+          "Id": "9a5f3236-2a52-4013-a8ef-c28b399e74c1",
+          "tipoInstalacion": 0,
+          "Codigo": null,
+          "Coste": 0,
+          "Medio": 0,
+          "Alimentacion": 0,
+          "Capacidad": 0,
+          "Hectareas": 0,
+          "Suministros": 0,
+          "TipoRecinto": 0,
+          "Criaturas": []
+        },
+        {
+          "Id": "7bf78598-d3a0-4a44-b2db-cfce50c0c959",
+          "tipoInstalacion": 0,
+          "Codigo": null,
+          "Coste": 0,
+          "Medio": 0,
+          "Alimentacion": 0,
+          "Capacidad": 0,
+          "Hectareas": 0,
+          "Suministros": 0,
+          "TipoRecinto": 0,
+          "Criaturas": []
+        },
+        {
+          "Id": "1ded6425-8a6f-4df8-bd8a-98d22b1eeebd",
+          "tipoInstalacion": 0,
+          "Codigo": null,
+          "Coste": 0,
+          "Medio": 0,
+          "Alimentacion": 0,
+          "Capacidad": 0,
+          "Hectareas": 0,
+          "Suministros": 0,
+          "TipoRecinto": 0,
+          "Criaturas": []
+        },
+        {
+          "Id": "2310ff6f-4572-401c-ab96-2ebbd11c57d3",
+          "tipoInstalacion": 0,
+          "Codigo": null,
+          "Coste": 0,
+          "Medio": 0,
+          "Alimentacion": 0,
+          "Capacidad": 0,
+          "Hectareas": 0,
+          "Suministros": 0,
+          "TipoRecinto": 0,
+          "Criaturas": []
+        }
+      ]
+    },
+    {
+      "Id": "6176bfb5-78f9-43e6-834b-ba66cf2eee79",
+      "Nombre": "Cuenca Experimental",
+      "TipoEnclave": 0,
+      "HectareasTotales": 5000,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 0,
+      "VisitantesActuales": 0,
+      "NivelAdquisitivo": 0,
+      "Instalaciones": []
+    }
+  ],
+  "HistorialEvento": [
+    {
+      "Id": "74e8b2ce-855c-400c-8b4b-db38154729c0",
+      "FechaHora": "2026-06-05T05:22:30.0934299+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada en Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "5103e8c1-8cf3-4f12-9e2f-6e1e28e5a9f7",
+      "FechaHora": "2026-06-05T05:22:30.0934455+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada para asdf en el escenario Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "9f2fdf9e-7bab-472c-b2da-138bf4bc99af",
+      "FechaHora": "2026-06-05T05:22:37.7809781+02:00",
+      "TipoEvento": 1,
+      "Descripcion": "Construida ADP03 en Arrakeen. Coste: 2500",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "5c490e1b-ac05-49d0-a7c1-3f69619aeea1",
+      "FechaHora": "2026-06-05T05:22:40.4170967+02:00",
+      "TipoEvento": 6,
+      "Descripcion": "Se ejecut\u00F3 la ronda 1.",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "59f44664-f637-465e-a7b6-95857cc90ee9",
+      "FechaHora": "2026-06-05T05:22:42.2770065+02:00",
+      "TipoEvento": 1,
+      "Descripcion": "Construida AAV02 en Arrakeen. Coste: 5000",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "83bd2767-47c7-4d3d-8c31-2ffb4487911b",
+      "FechaHora": "2026-06-05T05:22:47.4798536+02:00",
+      "TipoEvento": 1,
+      "Descripcion": "Construida ADR05 en Arrakeen. Coste: 1000",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "91d4d65b-d235-4178-960e-589d3c7409f0",
+      "FechaHora": "2026-06-05T05:22:50.417247+02:00",
+      "TipoEvento": 6,
+      "Descripcion": "Se ejecut\u00F3 la ronda 2.",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "db0aca94-e2d3-484f-a02e-61e09714106c",
+      "FechaHora": "2026-06-05T05:22:51.2016012+02:00",
+      "TipoEvento": 1,
+      "Descripcion": "Construida ASU04 en Arrakeen. Coste: 3500",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    },
+    {
+      "Id": "0f2094e2-c4ba-4e1d-8a0c-1a1b9e26266f",
+      "FechaHora": "2026-06-05T05:23:00.417904+02:00",
+      "TipoEvento": 6,
+      "Descripcion": "Se ejecut\u00F3 la ronda 3.",
+      "Severidad": 0,
+      "PartidaId": "324db59a-3894-4127-af2d-3f034622f267"
+    }
+  ]
+}

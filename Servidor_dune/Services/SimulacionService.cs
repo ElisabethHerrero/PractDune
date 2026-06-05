@@ -79,14 +79,14 @@ namespace ServidorDune.Services
 
             int probabilidad = _random.Next(0, 100);
 
-            if (probabilidad >= 20)
+            if (probabilidad >= 80)
                 return;
 
             List<TipoEspecie> especiesCompatibles =
                 ObtenerEspeciesCompatibles(instalacion);
 
-            if (especiesCompatibles.Count == 0)
-                return;
+            //if (especiesCompatibles.Count == 0)
+            //    return;
 
             TipoEspecie especieElegida =
                 especiesCompatibles[_random.Next(especiesCompatibles.Count)];

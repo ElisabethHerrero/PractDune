@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     //lo de la partida
     public double Solaris;
     public string NombrePartida;
-    public List<EnclaveDTO> Enclaves { get; private set; } = new List<EnclaveDTO>();
+    public List<EnclaveDTO> Enclaves { get;  set; } = new List<EnclaveDTO>();
     public List<InstalacionDTO> Instalaciones;
 
     public EnclaveDTO EnclaveActual { get; private set; }
@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     {
         InicializarPartidaDesdeID();
 
+
+        Debug.Log(Solaris);
 
         
     }
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviour
                 this.SelectEnclave(datos.Enclaves[0].Id);
                 Debug.Log($"Enclave inicial asignado: {datos.Enclaves[0].Nombre}");
             }
+
+            Debug.Log(Solaris);
 
             Debug.Log("GameManager actualizado con los datos de la partida: " + idACargar);
         },

@@ -444,16 +444,36 @@ MonoBehaviour:
   walkableTilemap: {fileID: 463800813}
   buildingPlacer: {fileID: 682596728}
   creaturePrefabs:
-  - {fileID: 2225019323749870738, guid: fd466446cba9b6a4eaf64952ca151d71, type: 3}
-  - {fileID: 6489645750825552898, guid: 4af03d552f9bc074eb79239e84861d5b, type: 3}
-  - {fileID: 6826709703815038213, guid: 76f68da2831b6214390d7773841cbc03, type: 3}
-  - {fileID: 4085634744916123571, guid: ad79b9817d6374c408a8a831094db0ec, type: 3}
-  - {fileID: 407544192976570843, guid: 33049c1f208a2c0409434ea1f57610d0, type: 3}
-  - {fileID: 8278560505438324379, guid: 94c5d5162250dc34aa14b7a18ff30c2c, type: 3}
-  - {fileID: 8846854847021623726, guid: 77cb70d01c7d47244a86ced6d5e72c47, type: 3}
-  - {fileID: 8105061466682803290, guid: 3cafe2a76e4f1f74d9a206bf89cf37b8, type: 3}
-  - {fileID: 7443286746291380104, guid: 8022daffc4fcd66468c4193011167d6b, type: 3}
-  - {fileID: 8495653537102222222, guid: b69ea749daa63874bb50fddbd01ea504, type: 3}
+  - especie: Gusano
+    babyPrefab: {fileID: 6489645750825552898, guid: 4af03d552f9bc074eb79239e84861d5b, type: 3}
+    adultPrefab: {fileID: 2225019323749870738, guid: fd466446cba9b6a4eaf64952ca151d71, type: 3}
+  - especie: "Halc\xF3n"
+    babyPrefab: {fileID: 8278560505438324379, guid: 94c5d5162250dc34aa14b7a18ff30c2c, type: 3}
+    adultPrefab: {fileID: 407544192976570843, guid: 33049c1f208a2c0409434ea1f57610d0, type: 3}
+  - especie: Muadib
+    babyPrefab: {fileID: 8105061466682803290, guid: 3cafe2a76e4f1f74d9a206bf89cf37b8, type: 3}
+    adultPrefab: {fileID: 8846854847021623726, guid: 77cb70d01c7d47244a86ced6d5e72c47, type: 3}
+  - especie: Tigre
+    babyPrefab: {fileID: 8495653537102222222, guid: b69ea749daa63874bb50fddbd01ea504, type: 3}
+    adultPrefab: {fileID: 7443286746291380104, guid: 8022daffc4fcd66468c4193011167d6b, type: 3}
+  - especie: Trucha
+    babyPrefab: {fileID: 4085634744916123571, guid: ad79b9817d6374c408a8a831094db0ec, type: 3}
+    adultPrefab: {fileID: 6826709703815038213, guid: 76f68da2831b6214390d7773841cbc03, type: 3}
+  - especie: 
+    babyPrefab: {fileID: 0}
+    adultPrefab: {fileID: 0}
+  - especie: 
+    babyPrefab: {fileID: 0}
+    adultPrefab: {fileID: 0}
+  - especie: 
+    babyPrefab: {fileID: 0}
+    adultPrefab: {fileID: 0}
+  - especie: 
+    babyPrefab: {fileID: 0}
+    adultPrefab: {fileID: 0}
+  - especie: 
+    babyPrefab: {fileID: 0}
+    adultPrefab: {fileID: 0}
 --- !u!4 &167301155
 Transform:
   m_ObjectHideFlags: 0
@@ -9298,6 +9318,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086078001}
   m_CullTransparentMesh: 1
+--- !u!1 &1135637168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135637170}
+  - component: {fileID: 1135637169}
+  m_Layer: 0
+  m_Name: RondaCriaturasManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1135637169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135637168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12c2fb73ba5a68449510b6bfabb855f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segundosEntreRondas: 10
+  ejecutarAutomaticamenteAlIniciar: 1
+  creatureSpawner: {fileID: 167301154}
+  gameManager: {fileID: 1293047507}
+--- !u!4 &1135637170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135637168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.186855, y: 7.554973, z: 227.34875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1150237997
 GameObject:
   m_ObjectHideFlags: 0
@@ -30167,3 +30235,4 @@ SceneRoots:
   - {fileID: 1700531000}
   - {fileID: 584689231}
   - {fileID: 1293047506}
+  - {fileID: 1135637170}

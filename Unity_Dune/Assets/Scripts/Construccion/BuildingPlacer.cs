@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -147,6 +148,11 @@ public class BuildingPlacer : MonoBehaviour
                 MarkCellsAsOccupied(originCell, size);
                 Debug.Log("Instalación construida: " + dataToBuild.codigoInstalacion);
                 CancelSelection();
+
+                //gameManager.PartidaCargada(GameManager.Instance.CurrentEnclaveId, partidaId);
+                gameManager.InicializarPartidaDesdeID();
+
+                Debug.Log(gameManager.Solaris);
             },
             (errorMessage) => // onError callback
             {
@@ -177,6 +183,8 @@ public class BuildingPlacer : MonoBehaviour
         // después de construir una instalación, se cancela la selección.
         // Así tienes que volver a pulsar el botón para construir otra.
         CancelSelection();*/
+
+        
     }
 
     bool CanBuild(Vector3Int originCell, Vector2Int size)
