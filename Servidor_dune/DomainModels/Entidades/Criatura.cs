@@ -19,6 +19,9 @@ namespace DomainModels.Entidades
 
         private int ApetitoBase;
 
+        public EstadoCriatura EstadoCriatura { get; set; } = EstadoCriatura.Activa;
+
+
         public Criatura(TipoEspecie especie)
         {
             Id = Guid.NewGuid();
@@ -35,6 +38,10 @@ namespace DomainModels.Entidades
             Edad = 0;
             Salud = 100;
             VecesFavorita = 0;
+
+            EstadoCriatura = EstadoCriatura.Activa;
+
+
         }
 
         public int CalcularIngesta(bool esAclimatacion)
@@ -48,7 +55,14 @@ namespace DomainModels.Entidades
 
         public void Alimentar(int cantidad, bool esAclimatacion)
         {
+            if (EstadoCriatura != EstadoCriatura.Activa)
+                return;
+
             int necesaria = CalcularIngesta(esAclimatacion);
+
+            if (necesaria <= 0)
+                return;
+
             double porcentaje = (double)cantidad / necesaria;
 
             if (porcentaje < 0.25) Salud -= 30;
@@ -57,14 +71,34 @@ namespace DomainModels.Entidades
             else if (Salud < 100) Salud += 5;
 
             if (Salud < 0) Salud = 0;
+
+            if (Salud <= 0)
+            {
+                Salud = 0;
+                EstadoCriatura = EstadoCriatura.LetargoIrreversible;
+            }
+
+            if (Salud > 100)
+                Salud = 100;
+        
+
         }
 
-        public void Envejecer()
+    public void Envejecer()
         {
-            Edad++;
+            if (Salud <= 0)
+            {
+                Salud = 0;
+                EstadoCriatura = EstadoCriatura.LetargoIrreversible;
+            }
+
+            if (Salud > 100)
+                Salud = 100;
         }
 
-        public bool EsAdulta() => Edad >= EdadAdulta;
+    
+
+    public bool EsAdulta() => Edad >= EdadAdulta;
 
         public void MarcarFavorita()
         {

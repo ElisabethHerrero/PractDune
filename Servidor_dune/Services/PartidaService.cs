@@ -4,6 +4,9 @@ using InstalacionesConf;
 using ServidorDune.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using DomainModels.Catalogs.Especie;
+using System.Linq;
+
 
 namespace ServidorDune.Services
 {

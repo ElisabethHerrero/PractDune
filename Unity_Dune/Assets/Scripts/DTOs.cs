@@ -94,6 +94,8 @@ public class CriaturaDTO
     public string Especie { get; set; }
 
     public int EdadActual { get; set; }
+    public int EdadAdulta;
+
     public int Salud { get; set; }
 
     // Usamos [JsonConverter] para que Newtonsoft envíe el nombre ("Aereo") 
@@ -204,6 +206,7 @@ public enum Severidad
     Warning,
     Error
 }
+
 
 
 

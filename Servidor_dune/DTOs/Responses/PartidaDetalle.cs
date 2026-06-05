@@ -96,6 +96,7 @@ namespace Dune.API.DTOs.Responses
         public Medio Medio { get; set; }
         public TipoAlimentacion Alimentacion { get; set; }
         public int Edad { get; set; }
+        public int EdadAdulta { get; set; }
         public int Salud { get; set; }
         public int VecesFavorita { get; set; }
 
@@ -108,6 +109,7 @@ namespace Dune.API.DTOs.Responses
             Medio = criatura.Medio;
             Alimentacion = criatura.Alimentacion;
             Edad = criatura.Edad;
+            EdadAdulta = criatura.EdadAdulta;
             Salud = criatura.Salud;
             VecesFavorita = criatura.VecesFavorita;
         }

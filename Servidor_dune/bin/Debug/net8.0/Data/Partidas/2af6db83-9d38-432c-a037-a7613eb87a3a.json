@@ -1,0 +1,51 @@
+{
+  "Id": "2af6db83-9d38-432c-a037-a7613eb87a3a",
+  "NombreJugador": "mari",
+  "Escenario": 0,
+  "Solaris": 100000,
+  "RondaActual": 0,
+  "EstadoPartida": 1,
+  "MesActual": 1,
+  "Enclaves": [
+    {
+      "Id": "065256fc-c160-472a-bb3f-551be0d13650",
+      "Nombre": "Arrakeen",
+      "TipoEnclave": 0,
+      "HectareasTotales": 7700,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 1000,
+      "VisitantesActuales": 1000,
+      "NivelAdquisitivo": 2,
+      "Instalaciones": []
+    },
+    {
+      "Id": "2a572d2c-26d2-4f30-b9ac-6fc3d645d38a",
+      "Nombre": "Cuenca Experimental",
+      "TipoEnclave": 0,
+      "HectareasTotales": 5000,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 0,
+      "VisitantesActuales": 0,
+      "NivelAdquisitivo": 0,
+      "Instalaciones": []
+    }
+  ],
+  "HistorialEvento": [
+    {
+      "Id": "5698e30b-9385-48f8-92c9-bf66dc7d3532",
+      "FechaHora": "2026-06-05T02:45:23.14246+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada en Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "2af6db83-9d38-432c-a037-a7613eb87a3a"
+    },
+    {
+      "Id": "9c5304f0-d4e8-4af4-9d9c-2ead59ff44cc",
+      "FechaHora": "2026-06-05T02:45:23.1424894+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada para mari en el escenario Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "2af6db83-9d38-432c-a037-a7613eb87a3a"
+    }
+  ]
+}

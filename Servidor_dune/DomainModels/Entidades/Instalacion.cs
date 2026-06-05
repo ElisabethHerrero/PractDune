@@ -70,6 +70,10 @@ namespace DomainModels.Entidades
         {
             foreach (var c in Criaturas)
             {
+
+                if (c.EstadoCriatura != EstadoCriatura.Activa)
+                    continue;
+
                 int necesaria = c.CalcularIngesta(esAclimatacion);
 
                 if (Suministros >= necesaria)

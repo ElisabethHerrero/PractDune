@@ -34,3 +34,11 @@ C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\Servidor_du
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\obj\Debug\net8.0\ref\Servidor_dune.dll
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\690dff8c-ab79-4f34-8c36-1959a9e27f5f.json
 C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\ed7e5a56-b522-4cf3-9543-183ff8df21b5.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\2af6db83-9d38-432c-a037-a7613eb87a3a.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\2eec94c1-bc48-471a-8633-f1cac92d0a52.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\990f8567-bd7f-42c7-a4a9-348c47fd30ce.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\b51c9c6e-08ae-4594-8b4f-b1269e9b96f8.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\b54bed84-d67f-48fa-bea2-00332fe93ea2.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\b95c73fc-bbf4-488d-a950-62878fe0072d.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\eb6515b0-a917-425c-9717-f039022abeba.json
+C:\Users\Admin\source\repos\PractDune\Servidor_dune\bin\Debug\net8.0\Data\Partidas\f547d37d-2ff4-4b50-bb3d-fe9f2e41b566.json

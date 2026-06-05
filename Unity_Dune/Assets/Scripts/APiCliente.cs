@@ -135,7 +135,7 @@ public class APICliente : MonoBehaviour
         }
     }
 
-    public IEnumerator EjecutarRonda(string partidaId, Action<PartidaDetalleDTO> onSuccess, Action<string> onError)
+    public IEnumerator EjecutarRonda(Guid partidaId, Action<PartidaDetalleDTO> onSuccess, Action<string> onError)
     {
         using (UnityWebRequest webRequest = new UnityWebRequest(BASE_URL + $"/ejecutarRonda/{partidaId}", "POST"))
         {
@@ -152,11 +152,15 @@ public class APICliente : MonoBehaviour
             else
             {
                 Debug.Log($"Ronda ejecutada: {webRequest.downloadHandler.text}");
-                PartidaDetalleDTO response = JsonConvert.DeserializeObject<PartidaDetalleDTO>(webRequest.downloadHandler.text);
+
+                PartidaDetalleDTO response =
+                    JsonConvert.DeserializeObject<PartidaDetalleDTO>(webRequest.downloadHandler.text);
+
                 onSuccess?.Invoke(response);
             }
         }
     }
+
 
     // ... Otros métodos para GuardarPartida, EliminarPartida, etc.
 

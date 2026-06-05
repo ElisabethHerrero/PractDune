@@ -10,26 +10,46 @@ public class CreatureSpawner : MonoBehaviour
     public BuildingPlacer buildingPlacer;
 
     [Header("Prefabs de criaturas")]
-    public GameObject[] creaturePrefabs;
+    public List<CreaturePrefabEntry> creaturePrefabs = new List<CreaturePrefabEntry>();
 
-    public void SpawnRandomCreature()
+    private List<GameObject> spawnedCreatures = new List<GameObject>();
+
+    public void SpawnCreaturesFromPartida(PartidaDetalleDTO partida)
     {
-        if (creaturePrefabs == null || creaturePrefabs.Length == 0)
+        ClearCreatures();
+
+        if (partida == null || partida.Enclaves == null)
         {
-            Debug.LogWarning("No hay prefabs de criaturas asignados.");
+            Debug.LogWarning("No hay partida o enclaves para generar criaturas visuales.");
             return;
         }
 
-        GameObject prefab = creaturePrefabs[UnityEngine.Random.Range(0, creaturePrefabs.Length)];
-        SpawnCreature(prefab);
+        foreach (EnclaveDTO enclave in partida.Enclaves)
+        {
+            foreach (InstalacionDTO instalacion in enclave.Instalaciones)
+            {
+                foreach (CriaturaDTO criatura in instalacion.Criaturas)
+                {
+                    SpawnCreatureFromDTO(criatura);
+                }
+            }
+        }
     }
 
-    public GameObject SpawnCreature(GameObject creaturePrefab)
+    private void SpawnCreatureFromDTO(CriaturaDTO criatura)
     {
-        if (creaturePrefab == null)
+        if (criatura == null)
+            return;
+
+        if (criatura.EstadoCriatura != EstadoCriatura.Activa)
+            return;
+
+        GameObject prefab = GetPrefabForCreature(criatura);
+
+        if (prefab == null)
         {
-            Debug.LogWarning("El prefab de criatura es null.");
-            return null;
+            Debug.LogWarning("No hay prefab asignado para la criatura: " + criatura.Especie);
+            return;
         }
 
         Vector3Int? freeCell = GetRandomFreeCell();
@@ -37,14 +57,14 @@ public class CreatureSpawner : MonoBehaviour
         if (freeCell == null)
         {
             Debug.LogWarning("No hay celdas libres para generar criatura.");
-            return null;
+            return;
         }
 
         Vector3 spawnPosition = grid.GetCellCenterWorld(freeCell.Value);
         spawnPosition.z = 0f;
 
         GameObject newCreature = Instantiate(
-            creaturePrefab,
+            prefab,
             spawnPosition,
             Quaternion.identity
         );
@@ -69,9 +89,34 @@ public class CreatureSpawner : MonoBehaviour
         mover.walkableTilemap = walkableTilemap;
         mover.buildingPlacer = buildingPlacer;
 
-        Debug.Log("Criatura generada en celda: " + freeCell.Value);
+        spawnedCreatures.Add(newCreature);
 
-        return newCreature;
+        Debug.Log("Criatura visual generada: " + criatura.Especie);
+    }
+
+    private GameObject GetPrefabForCreature(CriaturaDTO criatura)
+    {
+        CreaturePrefabEntry entry =
+            creaturePrefabs.Find(x => x.especie == criatura.Especie);
+
+        if (entry == null)
+            return null;
+
+        if (criatura.EdadActual < criatura.EdadAdulta)
+            return entry.babyPrefab;
+
+        return entry.adultPrefab;
+    }
+
+    private void ClearCreatures()
+    {
+        foreach (GameObject creature in spawnedCreatures)
+        {
+            if (creature != null)
+                Destroy(creature);
+        }
+
+        spawnedCreatures.Clear();
     }
 
     private Vector3Int? GetRandomFreeCell()
