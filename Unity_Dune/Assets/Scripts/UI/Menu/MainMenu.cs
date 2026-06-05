@@ -9,6 +9,7 @@ using System;
 using UnityEditor.PackageManager;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class MainMenu : MonoBehaviour
     {
         panelCargarPartida.SetActive(true);
         StartCoroutine(apiCliente.ListarPartidas(OnListarPartidasSuccess, OnListarPartidasError));
+        Debug.Log("Hola se abrio CargarPartida");
     }
 
     public void OnClickCerrarCargarPartida()
@@ -89,7 +91,11 @@ public class MainMenu : MonoBehaviour
 
     private void OnListarPartidasSuccess(ListaPartidasResponse response)
     {
-        SinPartidas.SetActive(false);
+        var texto = prefabBotonPartida.GetComponentInChildren<TextMeshProUGUI>();
+
+        Debug.Log(texto);
+
+        
 
         Debug.Log($"Se encontraron {response.Partidas.Count} partidas");
 
