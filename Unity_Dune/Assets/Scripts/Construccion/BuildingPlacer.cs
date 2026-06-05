@@ -120,16 +120,22 @@ public class BuildingPlacer : MonoBehaviour
         Guid enclaveId = gameManager.CurrentEnclaveId; // Necesitas implementar esto en GameManager
         string codigoInstalacion = previewData.codigoInstalacion;
 
+        GameObject prefabToBuild = selectedBuildingPrefab;
+        BuildingVisualData dataToBuild = previewData;
+
         StartCoroutine(api.ConstruirInstalacion(
             partidaId,
             enclaveId,
             codigoInstalacion,
+
             () => // onSuccess callback
             {
+                Debug.Log("Prefab callback: " + selectedBuildingPrefab);
+                
                 Debug.Log("Instalación construida y registrada en la API.");
                 // Lógica para instanciar el edificio visualmente en Unity
                 Vector3 spawnPosition = GetCenteredWorldPosition(originCell, size);
-                GameObject newBuilding = Instantiate(selectedBuildingPrefab, spawnPosition, Quaternion.identity);
+                GameObject newBuilding = Instantiate(prefabToBuild, spawnPosition, Quaternion.identity);
                 SpriteRenderer spriteRenderer = newBuilding.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
@@ -137,8 +143,9 @@ public class BuildingPlacer : MonoBehaviour
                     spriteRenderer.sortingOrder = 10;
                     spriteRenderer.color = Color.white;
                 }
+
                 MarkCellsAsOccupied(originCell, size);
-                Debug.Log("Instalación construida: " + previewData.codigoInstalacion);
+                Debug.Log("Instalación construida: " + dataToBuild.codigoInstalacion);
                 CancelSelection();
             },
             (errorMessage) => // onError callback
@@ -148,7 +155,7 @@ public class BuildingPlacer : MonoBehaviour
             }
         ));
 
-
+        /*
         Vector3 spawnPosition = GetCenteredWorldPosition(originCell, size);
 
         GameObject newBuilding = Instantiate(selectedBuildingPrefab, spawnPosition, Quaternion.identity);
@@ -169,7 +176,7 @@ public class BuildingPlacer : MonoBehaviour
         // Importante:
         // después de construir una instalación, se cancela la selección.
         // Así tienes que volver a pulsar el botón para construir otra.
-        CancelSelection();
+        CancelSelection();*/
     }
 
     bool CanBuild(Vector3Int originCell, Vector2Int size)

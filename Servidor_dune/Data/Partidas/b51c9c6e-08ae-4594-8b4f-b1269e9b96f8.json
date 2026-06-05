@@ -1,0 +1,73 @@
+{
+  "Id": "b51c9c6e-08ae-4594-8b4f-b1269e9b96f8",
+  "NombreJugador": "asdf",
+  "Escenario": 0,
+  "Solaris": 95000,
+  "RondaActual": 0,
+  "EstadoPartida": 1,
+  "MesActual": 1,
+  "Enclaves": [
+    {
+      "Id": "b198fe65-f973-41ce-b7d2-332dbabc0b35",
+      "Nombre": "Arrakeen",
+      "TipoEnclave": 0,
+      "HectareasTotales": 7700,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 1000,
+      "VisitantesActuales": 1000,
+      "NivelAdquisitivo": 2,
+      "Instalaciones": [
+        {
+          "Id": "7559387b-1c56-4ecc-b8d3-5b6223947395",
+          "tipoInstalacion": 0,
+          "Codigo": "AAV02",
+          "Coste": 5000,
+          "Medio": 2,
+          "Alimentacion": 1,
+          "Capacidad": 2,
+          "Hectareas": 500,
+          "Suministros": 50,
+          "TipoRecinto": 2,
+          "Criaturas": []
+        }
+      ]
+    },
+    {
+      "Id": "45833505-c4d2-44b6-924a-6d53d42f35e1",
+      "Nombre": "Cuenca Experimental",
+      "TipoEnclave": 0,
+      "HectareasTotales": 5000,
+      "SuministrosDisponibles": 0,
+      "VisitantesMensualesBase": 0,
+      "VisitantesActuales": 0,
+      "NivelAdquisitivo": 0,
+      "Instalaciones": []
+    }
+  ],
+  "HistorialEvento": [
+    {
+      "Id": "6055897b-6b51-4042-b18a-2333dc5d775c",
+      "FechaHora": "2026-06-05T03:27:32.8533007+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada en Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "b51c9c6e-08ae-4594-8b4f-b1269e9b96f8"
+    },
+    {
+      "Id": "d86f52c9-40ff-473f-bb93-f793bbf03367",
+      "FechaHora": "2026-06-05T03:27:32.8533164+02:00",
+      "TipoEvento": 0,
+      "Descripcion": "Partida creada para asdf en el escenario Arrakeen.",
+      "Severidad": 0,
+      "PartidaId": "b51c9c6e-08ae-4594-8b4f-b1269e9b96f8"
+    },
+    {
+      "Id": "9d997e94-2816-4a0d-88e6-baac34e5983c",
+      "FechaHora": "2026-06-05T03:27:36.7414823+02:00",
+      "TipoEvento": 1,
+      "Descripcion": "Construida AAV02 en Arrakeen. Coste: 5000",
+      "Severidad": 0,
+      "PartidaId": "b51c9c6e-08ae-4594-8b4f-b1269e9b96f8"
+    }
+  ]
+}

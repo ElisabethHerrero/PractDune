@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         InicializarPartidaDesdeID();
+
+
         
     }
 
@@ -61,27 +65,36 @@ public class GameManager : MonoBehaviour
 
         // 2. Llamamos a la API
         StartCoroutine(apiCliente.ObtenerDetallePartida(idACargar,
-            onSuccess: (datos) => {
-                // 3. LLENAMOS LOS ATRIBUTOS DEL GAMEMANAGER
-                this.Solaris = datos.Solaris;
-                this.NombrePartida = datos.NombreJugador;
-                this.Enclaves = datos.Enclaves;
+        onSuccess: (datos) => {
+            // --- TODO ESTO SE EJECUTA CUANDO LA API RESPONDE ---
 
-                // Si quieres extraer todas las instalaciones de todos los enclaves:
-                this.Instalaciones = new List<InstalacionDTO>();
-                foreach (var enclave in datos.Enclaves)
-                {
-                    this.Instalaciones.AddRange(enclave.Instalaciones);
-                }
+            // 3. Llenamos los atributos locales
+            this.Solaris = datos.Solaris;
+            this.NombrePartida = datos.NombreJugador;
+            this.Enclaves = datos.Enclaves;
 
-                Debug.Log("GameManager actualizado con los datos de la partida: " + idACargar);
-
-                // Aquí podrías disparar un evento de "UI_Actualizada" o cargar la siguiente escena
-            },
-            onError: (error) => {
-                Debug.LogError("Error al cargar el detalle: " + error);
+            // 4. Extraemos todas las instalaciones de todos los enclaves
+            this.Instalaciones = new List<InstalacionDTO>();
+            foreach (var enclave in datos.Enclaves)
+            {
+                this.Instalaciones.AddRange(enclave.Instalaciones);
             }
-        ));
+
+            // 5. ¡ASIGNAMOS EL ENCLAVE AL GAMEMANAGER!
+            // Usamos 'datos' que es el objeto que ya nos devuelve la API
+            if (datos.Enclaves != null && datos.Enclaves.Count > 0)
+            {
+                // Usamos la instancia de este mismo GameManager
+                this.SelectEnclave(datos.Enclaves[0].Id);
+                Debug.Log($"Enclave inicial asignado: {datos.Enclaves[0].Nombre}");
+            }
+
+            Debug.Log("GameManager actualizado con los datos de la partida: " + idACargar);
+        },
+        onError: (error) => {
+            Debug.LogError("Error al cargar el detalle: " + error);
+        }
+    ));
     }
     public void SetCurrentGameAndEnclave(Guid gameId, Guid initialEnclaveId, List<EnclaveDTO> enclaves)
     {

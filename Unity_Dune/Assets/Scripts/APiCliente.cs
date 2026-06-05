@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.Text;
+using Newtonsoft;
 
 public class APICliente : MonoBehaviour
 {
@@ -95,18 +96,42 @@ public class APICliente : MonoBehaviour
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
-                // Muy bien hecho lo de incluir el downloadHandler.text para ver el error del servidor
                 Debug.LogError($"Error al obtener detalle: {webRequest.error} - {webRequest.downloadHandler.text}");
                 onError?.Invoke(webRequest.downloadHandler.text);
             }
             else
             {
-                Debug.Log($"JSON recibido: {webRequest.downloadHandler.text}");
+                // 2. Obtenemos el texto del JSON
+                string jsonRecibido = webRequest.downloadHandler.text;
+                Debug.Log($"JSON recibido: {jsonRecibido}");
 
-                // USAR Newtonsoft.Json es lo correcto para tus listas de Enclaves
-                PartidaDetalleDTO response = JsonConvert.DeserializeObject<PartidaDetalleDTO>(webRequest.downloadHandler.text);
-                onSuccess?.Invoke(response);
+                try
+                {
+                    // 3. Deserializamos usando Newtonsoft.Json (la variable 'response' ya contiene todo)
+                    PartidaDetalleDTO response = JsonConvert.DeserializeObject<PartidaDetalleDTO>(jsonRecibido);
+
+                    // 4. Verificamos y asignamos el Enclave al GameManager ANTES del callback
+                    if (response != null && response.Enclaves != null && response.Enclaves.Count > 0)
+                    {
+                        // Asignamos el ID del primer enclave al GameManager
+                        GameManager.Instance.SelectEnclave(response.Enclaves[0].Id);
+                        Debug.Log($"[GameManager] Enclave inicial asignado: {response.Enclaves[0].Nombre} ({response.Enclaves[0].Id})");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[GameManager] La partida no contiene enclaves.");
+                    }
+
+                    // 5. Notificamos el éxito al resto del juego
+                    onSuccess?.Invoke(response);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"Error al procesar el JSON: {ex.Message}");
+                    onError?.Invoke("Error de deserialización");
+                }
             }
+
         }
     }
 
