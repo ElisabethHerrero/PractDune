@@ -129,6 +129,15 @@ public class EnclaveDto
 }
 
 
+public class ConstruirInstalacionRequest
+{
+    public Guid PartidaId;
+    public Guid EnclaveId;
+    public string Codigo;
+}
+
+
+
 //Catalogs
 public class Especie
 {

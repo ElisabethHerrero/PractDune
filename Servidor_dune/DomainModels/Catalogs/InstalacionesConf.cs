@@ -13,6 +13,7 @@ namespace InstalacionesConf
         {
             "ADR05",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Aclimatacion,
                 "ADR05",
                 1000,
@@ -28,6 +29,7 @@ namespace InstalacionesConf
         {
             "ADP03",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Aclimatacion,
                 "ADP03",
                 2500,
@@ -43,6 +45,7 @@ namespace InstalacionesConf
         {
             "AAV02",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Aclimatacion,
                 "AAV02",
                 5000,
@@ -58,6 +61,7 @@ namespace InstalacionesConf
         {
             "ASU04",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Aclimatacion,
                 "ASU04",
                 3500,
@@ -75,6 +79,7 @@ namespace InstalacionesConf
         {
             "EDR02",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Exhibicion,
                 "EDR02",
                 21000,
@@ -90,6 +95,7 @@ namespace InstalacionesConf
         {
             "EDP03",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Exhibicion,
                 "EDP03",
                 12500,
@@ -105,6 +111,7 @@ namespace InstalacionesConf
         {
             "EAV02",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Exhibicion,
                 "EAV02",
                 15000,
@@ -120,6 +127,7 @@ namespace InstalacionesConf
         {
             "ESU03",
             new Instalacion(
+                new Guid(),
                 TipoInstalacion.Exhibicion,
                 "ESU03",
                 25000,

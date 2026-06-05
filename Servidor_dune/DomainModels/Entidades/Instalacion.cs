@@ -26,6 +26,7 @@ namespace DomainModels.Entidades
 
         // Constructor privado para forzar el uso del método de fábrica
         public Instalacion(
+        Guid id,
         TipoInstalacion tipoInstalacion,
         string codigo,
         int coste,
@@ -36,6 +37,7 @@ namespace DomainModels.Entidades
         int suministros,
         TipoRecinto tipoRecinto)
         {
+            id = Guid.NewGuid();
             this.tipoInstalacion = tipoInstalacion;
             Codigo = codigo;
             Coste = coste;
@@ -46,6 +48,10 @@ namespace DomainModels.Entidades
             Suministros = suministros;
             TipoRecinto = tipoRecinto;
         }
+        public Instalacion() { Id = Guid.NewGuid(); }
+
+
+
 
         //
 

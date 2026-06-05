@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +17,9 @@ public class BuildingPlacer : MonoBehaviour
     private BuildingVisualData previewData;
 
     private HashSet<Vector3Int> occupiedCells = new HashSet<Vector3Int>();
+
+    [SerializeField] private APICliente api;
+    [SerializeField] private GameManager gameManager;
 
     void Update()
     {
@@ -110,6 +114,40 @@ public class BuildingPlacer : MonoBehaviour
             Debug.Log("No se puede construir aquí.");
             return;
         }
+
+        // *** Aquí se realiza la llamada a la corrutina ***
+        Guid partidaId = InfoPartida.CurrentGameId; // Asumiendo que InfoPartida.CurrentGameId es accesible y válido
+        Guid enclaveId = gameManager.CurrentEnclaveId; // Necesitas implementar esto en GameManager
+        string codigoInstalacion = previewData.codigoInstalacion;
+
+        StartCoroutine(api.ConstruirInstalacion(
+            partidaId,
+            enclaveId,
+            codigoInstalacion,
+            () => // onSuccess callback
+            {
+                Debug.Log("Instalación construida y registrada en la API.");
+                // Lógica para instanciar el edificio visualmente en Unity
+                Vector3 spawnPosition = GetCenteredWorldPosition(originCell, size);
+                GameObject newBuilding = Instantiate(selectedBuildingPrefab, spawnPosition, Quaternion.identity);
+                SpriteRenderer spriteRenderer = newBuilding.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sortingLayerName = "Default";
+                    spriteRenderer.sortingOrder = 10;
+                    spriteRenderer.color = Color.white;
+                }
+                MarkCellsAsOccupied(originCell, size);
+                Debug.Log("Instalación construida: " + previewData.codigoInstalacion);
+                CancelSelection();
+            },
+            (errorMessage) => // onError callback
+            {
+                Debug.LogError("Error al construir instalación en la API: " + errorMessage);
+                // Lógica para manejar el error, por ejemplo, mostrar un mensaje al usuario
+            }
+        ));
+
 
         Vector3 spawnPosition = GetCenteredWorldPosition(originCell, size);
 

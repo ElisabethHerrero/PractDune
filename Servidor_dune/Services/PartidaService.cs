@@ -97,6 +97,8 @@ namespace ServidorDune.Services
         }
 
 
+
+
         public Instalacion ConstruirInstalacion(Guid partidaId, Guid enclaveId, string codigoInstalacion)
         {
             // 1. Obtener la partida y el enclave
@@ -117,6 +119,7 @@ namespace ServidorDune.Services
             // 4. Crear la nueva instancia basada en la plantilla
             // Usamos el constructor con los datos de la plantilla
             Instalacion nuevaInstalacion = new Instalacion(
+                plantilla.Id,
                 plantilla.tipoInstalacion,
                 plantilla.Codigo,
                 plantilla.Coste,

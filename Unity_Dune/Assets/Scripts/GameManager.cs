@@ -13,10 +13,13 @@ public class GameManager : MonoBehaviour
     //lo de la partida
     public double Solaris;
     public string NombrePartida;
-    public List<EnclaveDTO> Enclaves;
+    public List<EnclaveDTO> Enclaves { get; private set; } = new List<EnclaveDTO>();
     public List<InstalacionDTO> Instalaciones;
 
+    public EnclaveDTO EnclaveActual { get; private set; }
+    public bool PartidaCargada { get; private set; }
 
+    public Guid CurrentEnclaveId { get; private set; }
 
     private void Awake()
     {
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InicializarPartidaDesdeID();
         
     }
 
@@ -80,4 +83,26 @@ public class GameManager : MonoBehaviour
             }
         ));
     }
+    public void SetCurrentGameAndEnclave(Guid gameId, Guid initialEnclaveId, List<EnclaveDTO> enclaves)
+    {
+        CurrentEnclaveId = gameId;
+        CurrentEnclaveId = initialEnclaveId;
+        Enclaves = enclaves;
+        Debug.Log($"Partida {gameId} cargada. Enclave activo: {initialEnclaveId}");
+    }
+
+    public void SelectEnclave(Guid enclaveId)
+    {
+        if (Enclaves.Exists(e => e.Id == enclaveId))
+        {
+            CurrentEnclaveId = enclaveId;
+            Debug.Log($"Enclave seleccionado: {enclaveId}");
+        }
+        else
+        {
+            Debug.LogWarning($"Intento de seleccionar un enclave no existente: {enclaveId}");
+        }
+    }
+
+
 }

@@ -87,7 +87,7 @@ public class APICliente : MonoBehaviour
     {
         // IMPORTANTE: Asegúrate de añadir "/Cargar/" en la URL
         // Si tu BASE_URL es ".../api/Partida", la ruta final debe ser ".../api/Partida/Cargar/ID"
-        string urlCompleta = BASE_URL + "/Cargar/" + partidaId;
+        string urlCompleta = BASE_URL + "/" + partidaId.ToString();
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(urlCompleta))
         {
@@ -205,5 +205,51 @@ public class APICliente : MonoBehaviour
     */
 
 
+    public IEnumerator ConstruirInstalacion(
+        Guid partidaId,
+        Guid enclaveId,
+        string codigo,
+        Action onSuccess,
+        Action<string> onError)
+    {
+        ConstruirInstalacionRequest request =
+            new ConstruirInstalacionRequest
+            {
+                PartidaId = partidaId,
+                EnclaveId = enclaveId,
+                Codigo = codigo
+            };
 
+        string json = JsonConvert.SerializeObject(request);
+
+        Debug.Log("JSON construir instalación: " + json);
+
+        using (UnityWebRequest webRequest =
+            new UnityWebRequest(
+                BASE_URL + "/construir-instalacion",
+                "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+            webRequest.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
+
+            webRequest.SetRequestHeader("Content-Type", "application/json");
+
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("Instalación guardada correctamente en API.");
+                onSuccess?.Invoke();
+            }
+            else
+            {
+                Debug.LogError("Error API construir instalación: " + webRequest.downloadHandler.text);
+                onError?.Invoke(webRequest.downloadHandler.text);
+            }
+        }
     }
+
+
+}
