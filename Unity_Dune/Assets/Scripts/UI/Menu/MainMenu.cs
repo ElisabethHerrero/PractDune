@@ -178,7 +178,7 @@ public class MainMenu : MonoBehaviour
 
     private void Exito(PartidaResumenDTO partida)
     {
-        Debug.Log($"Partida {partida.Id} creada con éxito para {partida.NombreJugador} en {partida.Escenario}.");
+        Debug.Log($"Partida {partida.Id} creada con ï¿½xito para {partida.NombreJugador} en {partida.Escenario}.");
 
         // Guardar el ID de la partida globalmente
         InfoPartida.CurrentGameId = partida.Id;
@@ -196,6 +196,13 @@ public class MainMenu : MonoBehaviour
     public void CargarJuegoTemporal()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void VolverAlInicio()
+    {
+        CanvaInicio.SetActive(true);
+        CanvaNuevaPartida.SetActive(false);
+        panelCargarPartida.SetActive(false);
     }
 
 
